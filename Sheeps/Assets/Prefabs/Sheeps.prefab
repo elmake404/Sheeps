@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 846558959115403595}
   - {fileID: 4115034050192727884}
+  - {fileID: 3618979329463349012}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62,9 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f274f48fb8c8e24c84676187c54f8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _communication: {fileID: 6176353996296609418}
   _speedRuning: 0.02
   _speedRotation: 0.1
-  _isSgepherd: 0
 --- !u!1 &6521164675729301424
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,8 +172,8 @@ GameObject:
   - component: {fileID: 4908141636783148225}
   - component: {fileID: 5931049529327341237}
   m_Layer: 0
-  m_Name: Capsule
-  m_TagString: Untagged
+  m_Name: Collider
+  m_TagString: Sheeps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,3 +253,45 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &3454344705736189739
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2446183900587899831}
+    m_Modifications:
+    - target: {fileID: 696047965017646829, guid: bf27e48b2ea05cf42abb55a743e769ff,
+        type: 3}
+      propertyPath: m_Name
+      value: Communication
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146386007284303935, guid: bf27e48b2ea05cf42abb55a743e769ff,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810902384478452129, guid: bf27e48b2ea05cf42abb55a743e769ff,
+        type: 3}
+      propertyPath: _sheepsMain
+      value: 
+      objectReference: {fileID: 1256506681877364665}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bf27e48b2ea05cf42abb55a743e769ff, type: 3}
+--- !u!4 &3618979329463349012 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2146386007284303935, guid: bf27e48b2ea05cf42abb55a743e769ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 3454344705736189739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6176353996296609418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8810902384478452129, guid: bf27e48b2ea05cf42abb55a743e769ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 3454344705736189739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f4ced97f3f7634299631a8af671a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
