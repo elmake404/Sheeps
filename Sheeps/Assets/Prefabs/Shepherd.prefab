@@ -224,6 +224,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4766015128111498713}
   - component: {fileID: 2702335502109061657}
+  - component: {fileID: 4753324777370308822}
+  - component: {fileID: 9174907097294228511}
   m_Layer: 0
   m_Name: Collider (3)S
   m_TagString: Shepherd
@@ -259,6 +261,53 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 579825916404509535, guid: 546abd2755596c94aa073b3467f61aad, type: 3}
+--- !u!33 &4753324777370308822
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368513760016286727}
+  m_Mesh: {fileID: 579825916404509535, guid: 546abd2755596c94aa073b3467f61aad, type: 3}
+--- !u!23 &9174907097294228511
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368513760016286727}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7ceb92a18e031a442a85566e2b9dda59, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &6425485486658319841
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +363,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8053575474367263428}
   - component: {fileID: 2063093605460877910}
+  - component: {fileID: 390087506983278045}
+  - component: {fileID: 1816023205280311595}
   m_Layer: 0
   m_Name: Collider (2)S
   m_TagString: Shepherd
@@ -349,6 +400,53 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 579825916404509535, guid: 546abd2755596c94aa073b3467f61aad, type: 3}
+--- !u!33 &390087506983278045
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806463596731990813}
+  m_Mesh: {fileID: 579825916404509535, guid: 546abd2755596c94aa073b3467f61aad, type: 3}
+--- !u!23 &1816023205280311595
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806463596731990813}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7ceb92a18e031a442a85566e2b9dda59, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &6940980266302776654
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6940980266302776658}
   - component: {fileID: 1481004067907989117}
+  - component: {fileID: 7788859680194471023}
   m_Layer: 0
   m_Name: Shepherd
   m_TagString: Shepherd
@@ -396,6 +495,19 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.35, z: 0}
+--- !u!114 &7788859680194471023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6940980266302776654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b888fde386012e40a240683aa57a9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _joystickSensitivity: 0
 --- !u!1 &7291655800815806805
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1766636337386585425
 Transform:
   m_ObjectHideFlags: 0

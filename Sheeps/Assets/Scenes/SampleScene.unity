@@ -189,6 +189,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheeps (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4379053108535662382, guid: a9d9df5d7f570da43b1d35e46595b9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d9df5d7f570da43b1d35e46595b9ed, type: 3}
 --- !u!1001 &515036867
@@ -258,6 +263,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheeps (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4379053108535662382, guid: a9d9df5d7f570da43b1d35e46595b9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d9df5d7f570da43b1d35e46595b9ed, type: 3}
 --- !u!1001 &595923721
@@ -326,6 +336,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sheeps (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379053108535662382, guid: a9d9df5d7f570da43b1d35e46595b9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d9df5d7f570da43b1d35e46595b9ed, type: 3}
@@ -488,6 +503,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheeps (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4379053108535662382, guid: a9d9df5d7f570da43b1d35e46595b9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d9df5d7f570da43b1d35e46595b9ed, type: 3}
 --- !u!1 &963194225
@@ -567,13 +587,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.32906637, y: -0, z: -0, w: 0.94430685}
-  m_LocalPosition: {x: 0, y: 3.22, z: -7.04}
+  m_LocalRotation: {x: 0.43114737, y: -0, z: -0, w: 0.9022816}
+  m_LocalPosition: {x: 0, y: 5.88, z: -5.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 38.424004, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 51.081, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +607,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shepherd: {fileID: 1813995090}
+  _speedMowe: 0.1
+  _speedRot: 0.7
+  _speedRotMin: 0.01
 --- !u!1001 &991024376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -653,6 +676,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sheeps (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379053108535662382, guid: a9d9df5d7f570da43b1d35e46595b9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d9df5d7f570da43b1d35e46595b9ed, type: 3}
@@ -723,6 +751,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheeps (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4379053108535662382, guid: a9d9df5d7f570da43b1d35e46595b9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d9df5d7f570da43b1d35e46595b9ed, type: 3}
 --- !u!1001 &1341624528
@@ -791,6 +824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sheeps (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379053108535662382, guid: a9d9df5d7f570da43b1d35e46595b9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d9df5d7f570da43b1d35e46595b9ed, type: 3}
@@ -882,8 +920,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664673219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 12.087}
+  m_LocalScale: {x: 1.0000005, y: 0.9999997, z: 3.4173422}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -961,6 +999,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheeps (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4379053108535662382, guid: a9d9df5d7f570da43b1d35e46595b9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d9df5d7f570da43b1d35e46595b9ed, type: 3}
 --- !u!1001 &4317102946192741700
@@ -1030,6 +1073,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheeps
       objectReference: {fileID: 0}
+    - target: {fileID: 4379053108535662382, guid: a9d9df5d7f570da43b1d35e46595b9ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d9df5d7f570da43b1d35e46595b9ed, type: 3}
 --- !u!1001 &6940980264489614080
@@ -1097,6 +1145,16 @@ PrefabInstance:
     - target: {fileID: 6940980266302776658, guid: fb67bf0c9ac0b4e45af4db0815862a99,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788859680194471023, guid: fb67bf0c9ac0b4e45af4db0815862a99,
+        type: 3}
+      propertyPath: _joystickSensitivity
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788859680194471023, guid: fb67bf0c9ac0b4e45af4db0815862a99,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
