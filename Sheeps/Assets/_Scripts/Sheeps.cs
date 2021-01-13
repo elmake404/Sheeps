@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Sheeps : MonoBehaviour
 {
+    [SerializeField]
+    private Herd _herd;
     private Vector3 _direction, _directionHerd;
     [SerializeField]
     private CommunicationOfSheep _communication;
@@ -18,22 +20,23 @@ public class Sheeps : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_isSgepherd)
-        {
-            RotationSpheeps(_direction);
-            transform.Translate(Vector3.forward * _speedRuning);
-            _communication.Activation();
-        }
-        else if (_isCommunicationHerd)
-        {
-            RotationSpheepsHerd(_directionHerd);
-            transform.Translate(Vector3.forward * _speedRuning);
-            _communication.Activation();
-        }
-        else
-        {
-            _communication.Deactivation();
-        }
+
+        //if (_isSgepherd)
+        //{
+        //    RotationSpheeps(_direction);
+        //    transform.Translate(Vector3.forward * _speedRuning);
+        //    _communication.Activation();
+        //}
+        //else if (_isCommunicationHerd)
+        //{
+        //    RotationSpheepsHerd(_directionHerd);
+        //    transform.Translate(Vector3.forward * _speedRuning);
+        //    _communication.Activation();
+        //}
+        //else
+        //{
+        //    _communication.Deactivation();
+        //}
     }
     private void OnTriggerStay(Collider other)
     {
@@ -71,5 +74,5 @@ public class Sheeps : MonoBehaviour
     {
         _directionHerd = transform.forward;
         _isCommunicationHerd = false;
-    }
+    }    
 }
