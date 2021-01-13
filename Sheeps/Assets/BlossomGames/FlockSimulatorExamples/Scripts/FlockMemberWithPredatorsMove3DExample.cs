@@ -42,7 +42,7 @@ public class FlockMemberWithPredatorsMove3DExample : MonoBehaviour
 		if (predatorsFlock != null)
 		{
 			float minDistance = runAwayDistance;
-			Vector3 targetPosition;
+			Vector3 targetPosition = Vector3.zero;
 			
 			foreach (FlockMember fm in predatorsFlock.members)
 			{

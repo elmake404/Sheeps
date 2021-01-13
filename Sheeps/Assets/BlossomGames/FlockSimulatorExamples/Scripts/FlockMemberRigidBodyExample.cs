@@ -27,7 +27,7 @@ public class FlockMemberRigidBodyExample : MonoBehaviour
 	{
 		_transform = transform;
 		_flockMember = GetComponent<FlockMember>();
-		_rigidBody = rigidbody;
+		_rigidBody = GetComponent<Rigidbody>();
 	}
 	
 	void Update()

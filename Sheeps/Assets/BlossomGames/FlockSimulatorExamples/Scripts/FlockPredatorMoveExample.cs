@@ -41,7 +41,7 @@ public class FlockPredatorMoveExample : MonoBehaviour
 		if (victimsFlock != null)
 		{
 			float minDistance = Mathf.Infinity;
-			Vector3 targetPosition;
+			Vector3 targetPosition = Vector3.zero;
 			
 			collectionChanged:;
 			foreach (FlockMember fm in victimsFlock.members) // iterate through a victims flock
