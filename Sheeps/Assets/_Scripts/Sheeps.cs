@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Sheeps : MonoBehaviour
 {
-    [SerializeField]
-    private Herd _herd;
-    private Vector3 _direction, _directionHerd;
+    //[SerializeField]
+    //private Herd _herd;
+    private Vector3 _direction,_directionForward, _directionHerd;
     [SerializeField]
     private CommunicationOfSheep _communication;
 
     [SerializeField]
     private float _speedRuning,_speedRotation;
-    private bool _isSgepherd, _isCommunicationHerd;
+    private bool _isSgepherd,_isSgepherdForwar, _isCommunicationHerd;
     void Start()
     {
 
@@ -20,23 +20,28 @@ public class Sheeps : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        //if (_isSgepherd)
-        //{
-        //    RotationSpheeps(_direction);
-        //    transform.Translate(Vector3.forward * _speedRuning);
-        //    _communication.Activation();
-        //}
-        //else if (_isCommunicationHerd)
-        //{
-        //    RotationSpheepsHerd(_directionHerd);
-        //    transform.Translate(Vector3.forward * _speedRuning);
-        //    _communication.Activation();
-        //}
-        //else
-        //{
-        //    _communication.Deactivation();
-        //}
+        if (_isSgepherd)
+        {
+            RotationSpheeps(_direction);
+            transform.Translate(Vector3.forward * _speedRuning);
+            _communication.Activation();
+        }
+        else if (_isSgepherdForwar)
+        {
+            RotationSpheepsHerd(_directionForward);
+            transform.Translate(Vector3.forward * _speedRuning);
+            _communication.Activation();
+        }
+        else if (_isCommunicationHerd)
+        {
+            RotationSpheepsHerd(_directionHerd);
+            transform.Translate(Vector3.forward * _speedRuning);
+            _communication.Activation();
+        }
+        else
+        {
+            _communication.Deactivation();
+        }
     }
     private void OnTriggerStay(Collider other)
     {
@@ -45,6 +50,12 @@ public class Sheeps : MonoBehaviour
            _direction = other.transform.position;
             _isSgepherd = true;
         }
+        if (other.tag == "ShepherdForward")
+        {
+            _isSgepherdForwar = true;
+            _directionForward = other.transform.parent.forward;
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {
@@ -52,6 +63,13 @@ public class Sheeps : MonoBehaviour
         {
             _direction = transform.position;
             _isSgepherd = false;
+        }
+
+        if (other.tag == "ShepherdForward")
+        {
+            _directionForward = transform.forward;
+
+            _isSgepherdForwar = false;
         }
     }
     private void RotationSpheeps(Vector3 PosShepherd)
