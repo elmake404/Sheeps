@@ -5,60 +5,55 @@ using UnityEngine;
 public class CommunicationOfSheep : MonoBehaviour
 {
     [SerializeField]
-    private Collider _colliderMain;
-    [SerializeField]
     private Sheeps _sheepsMain;
+    private Group _group; public Group GroupInstance { get { return _group; } }
+    //
     private List<Sheeps> _sheepsList = new List<Sheeps>();
     void Start()
     {
-        _colliderMain.enabled = false;
     }
 
     void FixedUpdate()
     {
-        if (_colliderMain.enabled && _sheepsList.Count > 0)
-        {
-            for (int i = 0; i < _sheepsList.Count; i++)
-            {
-                _sheepsList[i].Herd(_sheepsMain.transform.forward);
-            }
-        }
-    }
-    public void Activation()
-    {
-        _colliderMain.enabled = true;
-    }
-    public void Deactivation()
-    {
-        _colliderMain.enabled = false;
-        for (int i = 0; i < _sheepsList.Count; i++)
-        {
-            _sheepsList[i].OffHerd();
-        }
-        _sheepsList.Clear();
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Sheeps")
         {
-            var sheeps = other.GetComponentInParent<Sheeps>();
-            if (_sheepsMain != sheeps && !_sheepsList.Contains(sheeps))
-            {
-                _sheepsList.Add(sheeps);
-            }
+
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Sheeps")
         {
-            var sheeps = other.GetComponentInParent<Sheeps>();
+        }
+    }
+    public Transform GetNearestSheep()
+    {
+        Transform Sheep = null;
 
-            if (_sheepsList.Contains(sheeps))
+        if (_sheepsList.Count > 0)
+        {
+            float magnitude = float.PositiveInfinity;
+
+            for (int i = 0; i < _sheepsList.Count; i++)
             {
-                _sheepsList.Remove(sheeps);
-                sheeps.OffHerd();
+                float magnitudeSheeps = (_sheepsMain.transform.position - _sheepsList[i].transform.position).sqrMagnitude;
+
+                if (magnitude > magnitudeSheeps
+                    && magnitudeSheeps > _sheepsMain.MinDistend)
+                {
+                    magnitude = (_sheepsMain.transform.position - _sheepsList[i].transform.position).sqrMagnitude;
+                    Sheep = _sheepsList[i].transform;
+                }
             }
         }
+
+        return Sheep;
+    }
+    public void GroupInitialization(Group group)
+    {
+        _group = group;
     }
 }

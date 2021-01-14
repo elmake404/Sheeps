@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6652914963792248555}
   m_Layer: 0
   m_Name: Collider (6)
-  m_TagString: Shepherd
+  m_TagString: ShepherdForward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 7665480391984895137}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Shepherd
+  m_TagString: ShepherdForward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6184335416977251121}
   m_Layer: 0
   m_Name: Collider (1)
-  m_TagString: Shepherd
+  m_TagString: ShepherdForward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 4070992089705637423}
   m_Layer: 0
   m_Name: Collider (7)
-  m_TagString: Shepherd
+  m_TagString: ShepherdForward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,7 +490,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 6940980266302776654}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1.7
   m_Direction: 1
@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 7182914001856224091}
   m_Layer: 0
   m_Name: Collider (4)
-  m_TagString: Shepherd
+  m_TagString: ShepherdForward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 6411858749010135499}
   m_Layer: 0
   m_Name: Collider (5)
-  m_TagString: Shepherd
+  m_TagString: ShepherdForward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -613,7 +613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1766636337386585425
 Transform:
   m_ObjectHideFlags: 0

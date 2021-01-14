@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2146386007284303935}
   - component: {fileID: -9070461858341129200}
-  - component: {fileID: 7531557759795341023}
   - component: {fileID: 8810902384478452129}
+  - component: {fileID: 78979935991592478}
   m_Layer: 0
   m_Name: Communication
   m_TagString: Untagged
@@ -49,20 +49,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7531557759795341023
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696047965017646829}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 579825916404509535, guid: 656c1ed8a9879544a96803d742d09986, type: 3}
 --- !u!114 &8810902384478452129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,4 +61,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f4ced97f3f7634299631a8af671a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colliderMain: {fileID: 7531557759795341023}
+--- !u!135 &78979935991592478
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696047965017646829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
