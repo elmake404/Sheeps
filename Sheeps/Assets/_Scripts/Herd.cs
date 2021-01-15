@@ -10,8 +10,13 @@ public class Group
         SheepsHerd = new List<Sheeps>();
         SheepsHerd.Add(sheep);
     }
-    public int Index;
+
     public List<Sheeps> SheepsHerd;
+    public Quaternion DirectionGroup;
+    public Sheeps Leader;
+
+    public int Index;
+    public bool IsDirectionSet;
 }
 public class Herd : MonoBehaviour
 {
@@ -31,19 +36,21 @@ public class Herd : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //Debug.Log(_sheeps.Count);
+            Debug.Log(_groupsSheep.Count);
+            for (int i = 0; i < _groupsSheep.Count; i++)
+            {
+               Debug.Log( _groupsSheep[i].SheepsHerd.Count);
+            }
         }
     }
     public void NewGroup(Sheeps _sheeps)
     {
-        //ему надо записать индекс
-        var NewGroup = new Group(_groupsSheep.Count - 1, _sheeps);
+        var NewGroup = new Group(_groupsSheep.Count, _sheeps);
         _groupsSheep.Add(NewGroup);
         _sheeps.Communication.GroupInitialization(NewGroup);
     }
     public void AddGroup(int index, Sheeps sheeps)
     {
-        //ему надо записать индекс
         _groupsSheep[index].SheepsHerd.Add(sheeps);
         sheeps.Communication.GroupInitialization(_groupsSheep[index]);
     }
@@ -67,7 +74,6 @@ public class Herd : MonoBehaviour
             {
                 _groupsSheep[i].Index = i;
             }
-
         }
     }
 }

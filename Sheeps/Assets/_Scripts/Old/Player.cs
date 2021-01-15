@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float _speedMowe, _speedRot, _speedRotMin;
-    [SerializeField]
+    //[SerializeField]
     private bool _IsMove = false;
 
     private void Awake()
@@ -40,15 +40,15 @@ public class Player : MonoBehaviour
             _currentMosePos = (_cam.transform.position - ((ray.direction) *
             ((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y)));
 
-            if ((_currentMosePos - _shepherd.position).magnitude >= 0.5f)
-            {
+            //if ((_currentMosePos - _shepherd.position).magnitude >= 0.5f)
+            //{
                 _IsMove = true;
                 _posShepherd = _currentMosePos;
-            }
-            else
-            {
-                _IsMove = false;
-            }
+            //}
+            //else
+            //{
+            //    _IsMove = false;
+            //}
         }
         else
         {
