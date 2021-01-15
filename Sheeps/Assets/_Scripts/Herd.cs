@@ -56,8 +56,14 @@ public class Herd : MonoBehaviour
     }
     public void UnificationOfGroups(int indexAddedGroup, int indexWillAddedGroup)
     {
-        _groupsSheep[indexAddedGroup].SheepsHerd.AddRange(_groupsSheep[indexWillAddedGroup].SheepsHerd);
+        _groupsSheep[indexWillAddedGroup].SheepsHerd.AddRange(_groupsSheep[indexAddedGroup].SheepsHerd);
+
+        for (int i = 0; i < _groupsSheep[indexAddedGroup].SheepsHerd.Count; i++)
+        {
+            _groupsSheep[indexAddedGroup].SheepsHerd[i].Communication.GroupInitialization(_groupsSheep[indexWillAddedGroup]);
+        }
         _groupsSheep.RemoveAt(indexAddedGroup);
+
         for (int i = 0; i < _groupsSheep.Count; i++)
         {
             _groupsSheep[i].Index = i;

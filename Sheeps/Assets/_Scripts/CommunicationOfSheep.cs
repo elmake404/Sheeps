@@ -15,7 +15,7 @@ public class CommunicationOfSheep : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_group!=null)
+        if (_group != null)
         {
             if (_group.IsDirectionSet)
             {
@@ -32,7 +32,7 @@ public class CommunicationOfSheep : MonoBehaviour
         if (other.tag == "Sheeps")
         {
             Sheeps sheeps = other.GetComponentInParent<Sheeps>();
-            if (_sheepsMain != sheeps)
+            if (_sheepsMain != sheeps && sheeps != null)
             {
                 if (sheeps.Communication.GroupInstance == null && _sheepsMain.Communication.GroupInstance == null)
                 {
@@ -46,6 +46,11 @@ public class CommunicationOfSheep : MonoBehaviour
                 else if (sheeps.Communication.GroupInstance == null && _sheepsMain.Communication.GroupInstance != null)
                 {
                     Herd.Instance.AddGroup(_group.Index, sheeps);
+                }
+                else if (sheeps.Communication.GroupInstance != null && _sheepsMain.Communication.GroupInstance != null
+                    && sheeps.Communication.GroupInstance!= _sheepsMain.Communication.GroupInstance)
+                {
+                    Herd.Instance.UnificationOfGroups(sheeps.Communication.GroupInstance.Index, _sheepsMain.Communication.GroupInstance.Index);
                 }
             }
         }
@@ -87,7 +92,7 @@ public class CommunicationOfSheep : MonoBehaviour
     {
         if (_group != null)
         {
-            if (_group.Leader==null||_group.Leader == _sheepsMain)
+            if (_group.Leader == null || _group.Leader == _sheepsMain)
             {
                 _group.Leader = _sheepsMain;
                 _group.DirectionGroup = Direction;
