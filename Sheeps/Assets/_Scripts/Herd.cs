@@ -11,12 +11,14 @@ public class Group
         SheepsHerd.Add(sheep);
     }
 
+
     public List<Sheeps> SheepsHerd;
     public Quaternion DirectionGroup;
     public Sheeps Leader;
 
     public int Index;
     public bool IsDirectionSet;
+
 }
 public class Herd : MonoBehaviour
 {
@@ -48,6 +50,7 @@ public class Herd : MonoBehaviour
         var NewGroup = new Group(_groupsSheep.Count, _sheeps);
         _groupsSheep.Add(NewGroup);
         _sheeps.Communication.GroupInitialization(NewGroup);
+        _sheeps.IsInHerd = true;
     }
     public void AddGroup(int index, Sheeps sheeps)
     {
@@ -60,7 +63,7 @@ public class Herd : MonoBehaviour
 
         for (int i = 0; i < _groupsSheep[indexAddedGroup].SheepsHerd.Count; i++)
         {
-            _groupsSheep[indexAddedGroup].SheepsHerd[i].Communication.GroupInitialization(_groupsSheep[indexWillAddedGroup]);
+            _groupsSheep[indexAddedGroup].SheepsHerd[i].MovingToAnotherGroup(_groupsSheep[indexWillAddedGroup]);
         }
         _groupsSheep.RemoveAt(indexAddedGroup);
 

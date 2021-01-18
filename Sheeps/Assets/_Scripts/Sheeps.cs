@@ -1,21 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Sheeps : MonoBehaviour
 {
-    //[SerializeField]
-    //private Herd _herd;
-    //[SerializeField]
-    private Transform _direcrionSheep;
-    private Vector3 _direction/* _directionForward,*/ ;
-    private  Quaternion _directionHerd;
-    [SerializeField] 
+    [SerializeField]
     private CommunicationOfSheep _communication; public CommunicationOfSheep Communication { get { return _communication; } }
 
     [SerializeField]
+    private Transform _direcrionSheep;
+    private Vector3 _direction;
+    private Quaternion _directionHerd;
+
+    [SerializeField]
     private float _speedRuning, _speedRotation, _minDistens;
-    private bool _isSgepherd, /*_isSgepherdForwar,*/ _isCommunicationHerd;
+    private bool _isSgepherd, _isCommunicationHerd;
+
+    //[HideInInspector]
+    public bool IsInHerd;
     public float MinDistend { get { return _minDistens; } }
     void Start()
     {
@@ -29,23 +32,32 @@ public class Sheeps : MonoBehaviour
             RotationOffTarget(_direction);
             transform.Translate(Vector3.forward * _speedRuning);
         }
-        else if (_isCommunicationHerd)
+        else if (_isCommunicationHerd /*&& IsInHerd*/)
         {
             RotationForTarget(_directionHerd);
             transform.Translate(Vector3.forward * _speedRuning);
         }
         else
         {
-            if (_direcrionSheep==null)
+            //#region Old
+            if (_direcrionSheep == null)
             {
                 _direcrionSheep = _communication.GetNearestSheep();
             }
-            else if ((_direcrionSheep.position -transform.position).sqrMagnitude>_minDistens)
+            else
             {
-                _direcrionSheep = _communication.GetNearestSheep();
-                RotationToTheTarget(_direcrionSheep.position);
-                transform.Translate(Vector3.forward * _speedRuning);
+                if ((_direcrionSheep.position - transform.position).sqrMagnitude > _minDistens)
+                {
+                    RotationToTheTarget(_direcrionSheep.position);
+                    transform.Translate(Vector3.forward * _speedRuning);
+                    _direcrionSheep = _communication.GetNearestSheep();
+                }
+                else
+                {
+                    IsInHerd = true;
+                }
             }
+            //#endregion
         }
     }
     private void OnTriggerStay(Collider other)
@@ -56,12 +68,6 @@ public class Sheeps : MonoBehaviour
             _communication.SetDirectionGroup(transform.rotation);
             _isSgepherd = true;
         }
-        //if (other.tag == "ShepherdForward")
-        //{
-        //    _isSgepherdForwar = true;
-        //    _directionForward = other.transform.parent.forward;
-        //}
-
     }
     private void OnTriggerExit(Collider other)
     {
@@ -71,13 +77,6 @@ public class Sheeps : MonoBehaviour
             _communication.TurningOffGroupMovement();
             _isSgepherd = false;
         }
-
-        //if (other.tag == "ShepherdForward")
-        //{
-        //    _directionForward = transform.forward;
-
-        //    _isSgepherdForwar = false;
-        //}
     }
     private void RotationOffTarget(Vector3 PosShepherd)
     {
@@ -87,7 +86,7 @@ public class Sheeps : MonoBehaviour
     }
     private void RotationForTarget(Quaternion rotation)
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation,rotation,_speedRotation);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, _speedRotation);
     }
     private void RotationToTheTarget(Vector3 PosShepherd)
     {
@@ -105,5 +104,11 @@ public class Sheeps : MonoBehaviour
     {
         _isCommunicationHerd = false;
         _directionHerd = transform.rotation;
+    }
+    public void MovingToAnotherGroup(Group NewGrpop)
+    {
+        Communication.GroupInitialization(NewGrpop);
+        IsInHerd = false;
+        _direcrionSheep = null;
     }
 }

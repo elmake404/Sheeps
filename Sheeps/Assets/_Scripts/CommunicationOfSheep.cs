@@ -72,12 +72,15 @@ public class CommunicationOfSheep : MonoBehaviour
 
             for (int i = 0; i < _group.SheepsHerd.Count; i++)
             {
-                float magnitudeSheeps = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
-
-                if (magnitude > magnitudeSheeps && _sheepsMain != _group.SheepsHerd[i])
+                if (_group.SheepsHerd[i].IsInHerd)
                 {
-                    magnitude = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
-                    Sheep = _group.SheepsHerd[i].transform;
+                    float magnitudeSheeps = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
+
+                    if (magnitude > magnitudeSheeps && _sheepsMain != _group.SheepsHerd[i])
+                    {
+                        magnitude = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
+                        Sheep = _group.SheepsHerd[i].transform;
+                    }
                 }
             }
         }
