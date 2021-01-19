@@ -64,10 +64,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _communication: {fileID: 6176353996296609418}
-  _agent: {fileID: 0}
+  _rbMain: {fileID: 4753689859932013966}
   _speedRuning: 0.02
   _speedRotation: 0.3
   _minDistens: 0.5
+  IsInHerd: 0
 --- !u!1 &6521164675729301424
 GameObject:
   m_ObjectHideFlags: 0

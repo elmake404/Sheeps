@@ -40,15 +40,8 @@ public class Player : MonoBehaviour
             _currentMosePos = (_cam.transform.position - ((ray.direction) *
             ((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y)));
 
-            //if ((_currentMosePos - _shepherd.position).magnitude >= 0.5f)
-            //{
                 _IsMove = true;
                 _posShepherd = _currentMosePos;
-            //}
-            //else
-            //{
-            //    _IsMove = false;
-            //}
         }
         else
         {

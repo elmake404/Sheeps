@@ -68,15 +68,17 @@ public class CommunicationOfSheep : MonoBehaviour
 
         if (_group != null)
         {
+            bool isDuet = _group.SheepsHerd.Count <= 2;
+
             float magnitude = float.PositiveInfinity;
 
             for (int i = 0; i < _group.SheepsHerd.Count; i++)
             {
-                if (_group.SheepsHerd[i].IsInHerd)
+                if (_group.SheepsHerd[i].IsInHerd && _sheepsMain.CheckForAnException(isDuet, _group.SheepsHerd[i]))
                 {
                     float magnitudeSheeps = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
 
-                    if (magnitude > magnitudeSheeps && _sheepsMain != _group.SheepsHerd[i])
+                    if (magnitude > magnitudeSheeps )
                     {
                         magnitude = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
                         Sheep = _group.SheepsHerd[i].transform;

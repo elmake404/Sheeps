@@ -5,11 +5,14 @@ using UnityEngine.AI;
 
 public class Sheeps : MonoBehaviour
 {
+    
     [SerializeField]
     private CommunicationOfSheep _communication; public CommunicationOfSheep Communication { get { return _communication; } }
 
+    //[SerializeField]
+    private Transform _direcrionSheep; public Transform DirecrionSheep { get { return _direcrionSheep; } }
     [SerializeField]
-    private Transform _direcrionSheep;
+    private Rigidbody _rbMain;
     private Vector3 _direction;
     private Quaternion _directionHerd;
 
@@ -17,7 +20,7 @@ public class Sheeps : MonoBehaviour
     private float _speedRuning, _speedRotation, _minDistens;
     private bool _isSgepherd, _isCommunicationHerd;
 
-    //[HideInInspector]
+    [HideInInspector]
     public bool IsInHerd;
     public float MinDistend { get { return _minDistens; } }
     void Start()
@@ -32,14 +35,13 @@ public class Sheeps : MonoBehaviour
             RotationOffTarget(_direction);
             transform.Translate(Vector3.forward * _speedRuning);
         }
-        else if (_isCommunicationHerd /*&& IsInHerd*/)
+        else if (_isCommunicationHerd && IsInHerd)
         {
             RotationForTarget(_directionHerd);
             transform.Translate(Vector3.forward * _speedRuning);
         }
         else
         {
-            //#region Old
             if (_direcrionSheep == null)
             {
                 _direcrionSheep = _communication.GetNearestSheep();
@@ -54,10 +56,11 @@ public class Sheeps : MonoBehaviour
                 }
                 else
                 {
+                    _rbMain.velocity = Vector3.zero;
+                    _rbMain.angularVelocity = Vector3.zero;
                     IsInHerd = true;
                 }
             }
-            //#endregion
         }
     }
     private void OnTriggerStay(Collider other)
@@ -66,6 +69,8 @@ public class Sheeps : MonoBehaviour
         {
             _direction = other.transform.position;
             _communication.SetDirectionGroup(transform.rotation);
+            if(_communication.GroupInstance!=null)
+            CameraControl.Instance.SetTarget(_communication.GroupInstance);
             _isSgepherd = true;
         }
     }
@@ -110,5 +115,22 @@ public class Sheeps : MonoBehaviour
         Communication.GroupInitialization(NewGrpop);
         IsInHerd = false;
         _direcrionSheep = null;
+    }
+    public bool CheckForAnException(bool isDuet, Sheeps Sheep)
+    {
+        if (isDuet)
+        {
+            if (Sheep != this)
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            if (Sheep != this && Sheep.DirecrionSheep != transform)
+                return true;
+            else
+                return false;
+        }
     }
 }

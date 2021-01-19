@@ -25,6 +25,7 @@ public class Herd : MonoBehaviour
     public static Herd Instance;
 
     private List<Group> _groupsSheep = new List<Group>();
+
     private void Awake()
     {
         Instance = this;
