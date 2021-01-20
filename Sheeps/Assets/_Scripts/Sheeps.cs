@@ -30,6 +30,13 @@ public class Sheeps : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!Player.IsMove && _isSgepherd)
+        {
+            _direction = transform.position;
+            _communication.TurningOffGroupMovement();
+            _isSgepherd = false;
+        }
+
         if (_isSgepherd)
         {
             RotationOffTarget(_direction);

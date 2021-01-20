@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static bool IsMove;
+
     [SerializeField]
     private Transform _shepherd;
     private Camera _cam;
@@ -12,7 +14,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speedMowe, _speedRot, _speedRotMin;
     //[SerializeField]
-    private bool _IsMove = false;
 
     private void Awake()
     {
@@ -20,7 +21,8 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-
+        IsMove = false;
+        _shepherd.gameObject.SetActive(false);
     }
 
     void Update()
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour
          ((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y)));
 
             _shepherd.position = _startPosMouse;
+            _shepherd.gameObject.SetActive(true);
+
         }
         else if (Input.GetMouseButton(0))
         {
@@ -40,12 +44,14 @@ public class Player : MonoBehaviour
             _currentMosePos = (_cam.transform.position - ((ray.direction) *
             ((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y)));
 
-                _IsMove = true;
+                IsMove = true;
                 _posShepherd = _currentMosePos;
         }
         else
         {
-            _IsMove = false;
+            _shepherd.gameObject.SetActive(false);
+
+            IsMove = false;
         }
 
         #region Old
@@ -71,7 +77,7 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (_IsMove)
+        if (IsMove)
         {
             if ((_shepherd.position - _currentMosePos) != Vector3.zero)
                 RotationPlayer(_posShepherd);
