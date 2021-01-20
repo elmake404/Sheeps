@@ -215,11 +215,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2446183900587899831}
     m_Modifications:
-    - target: {fileID: 78979935991592478, guid: bf27e48b2ea05cf42abb55a743e769ff,
-        type: 3}
-      propertyPath: m_Radius
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 696047965017646829, guid: bf27e48b2ea05cf42abb55a743e769ff,
         type: 3}
       propertyPath: m_Name
@@ -285,6 +280,11 @@ PrefabInstance:
       propertyPath: _sheepsMain
       value: 
       objectReference: {fileID: 1256506681877364665}
+    - target: {fileID: 8810902384478452129, guid: bf27e48b2ea05cf42abb55a743e769ff,
+        type: 3}
+      propertyPath: _collider
+      value: 
+      objectReference: {fileID: 3380193277205631285}
     m_RemovedComponents:
     - {fileID: 7531557759795341023, guid: bf27e48b2ea05cf42abb55a743e769ff, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bf27e48b2ea05cf42abb55a743e769ff, type: 3}
@@ -306,6 +306,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f4ced97f3f7634299631a8af671a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &3380193277205631285 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 78979935991592478, guid: bf27e48b2ea05cf42abb55a743e769ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 3454344705736189739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7600337944106936669
 PrefabInstance:
   m_ObjectHideFlags: 0

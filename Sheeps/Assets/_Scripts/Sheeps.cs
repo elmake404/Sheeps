@@ -9,7 +9,7 @@ public class Sheeps : MonoBehaviour
     [SerializeField]
     private CommunicationOfSheep _communication; public CommunicationOfSheep Communication { get { return _communication; } }
 
-    //[SerializeField]
+    [SerializeField]
     private Transform _direcrionSheep; public Transform DirecrionSheep { get { return _direcrionSheep; } }
     [SerializeField]
     private Rigidbody _rbMain;
@@ -18,8 +18,10 @@ public class Sheeps : MonoBehaviour
 
     [SerializeField]
     private float _speedRuning, _speedRotation, _minDistens;
-    private bool _isSgepherd, _isCommunicationHerd;
+    [SerializeField]
+    private bool _isShepherd, _isCommunicationHerd;
 
+    //выглфдит не очень 
     [HideInInspector]
     public bool IsInHerd;
     public float MinDistend { get { return _minDistens; } }
@@ -30,14 +32,14 @@ public class Sheeps : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!Player.IsMove && _isSgepherd)
+        if (!Player.IsMove && _isShepherd)
         {
             _direction = transform.position;
             _communication.TurningOffGroupMovement();
-            _isSgepherd = false;
+            _isShepherd = false;
         }
 
-        if (_isSgepherd)
+        if (_isShepherd)
         {
             RotationOffTarget(_direction);
             transform.Translate(Vector3.forward * _speedRuning);
@@ -63,11 +65,11 @@ public class Sheeps : MonoBehaviour
                 }
                 else
                 {
-                    _rbMain.velocity = Vector3.zero;
-                    _rbMain.angularVelocity = Vector3.zero;
                     IsInHerd = true;
                 }
             }
+            _rbMain.velocity = Vector3.zero;
+            _rbMain.angularVelocity = Vector3.zero;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -78,7 +80,7 @@ public class Sheeps : MonoBehaviour
             _communication.SetDirectionGroup(transform.rotation);
             if(_communication.GroupInstance!=null)
             CameraControl.Instance.SetTarget(_communication.GroupInstance);
-            _isSgepherd = true;
+            _isShepherd = true;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -87,7 +89,7 @@ public class Sheeps : MonoBehaviour
         {
             _direction = transform.position;
             _communication.TurningOffGroupMovement();
-            _isSgepherd = false;
+            _isShepherd = false;
         }
     }
     private void RotationOffTarget(Vector3 PosShepherd)
@@ -139,5 +141,13 @@ public class Sheeps : MonoBehaviour
             else
                 return false;
         }
+    }
+    public void LeavinGroup() 
+    {
+        _direcrionSheep = null;
+        _directionHerd = transform.rotation;
+        _isCommunicationHerd = false;
+        _isShepherd = false;
+        IsInHerd = false;
     }
 }

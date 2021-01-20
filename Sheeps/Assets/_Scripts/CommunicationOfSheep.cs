@@ -5,14 +5,23 @@ using UnityEngine;
 public class CommunicationOfSheep : MonoBehaviour
 {
     [SerializeField]
+    private Collider _collider;
+    [SerializeField]
     private Sheeps _sheepsMain;
     private Group _group; public Group GroupInstance { get { return _group; } }
-    //
-    //private List<Sheeps> _sheepsList = new List<Sheeps>();
+    [SerializeField]
+    private List<Sheeps> _sheepsList = new List<Sheeps>();
     void Start()
     {
-    }
 
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //StartCoroutine(enumerator());
+        }
+    }
     void FixedUpdate()
     {
         if (_group != null)
@@ -34,24 +43,46 @@ public class CommunicationOfSheep : MonoBehaviour
             Sheeps sheeps = other.GetComponentInParent<Sheeps>();
             if (_sheepsMain != sheeps && sheeps != null)
             {
+                if (!_sheepsList.Contains(sheeps))
+                {
+                    _sheepsList.Add(sheeps);
+                }
+
+                #region AddGroup
                 if (sheeps.Communication.GroupInstance == null && _sheepsMain.Communication.GroupInstance == null)
                 {
+                    Debug.Log("T"+1);
+                    Debug.Log(_sheepsMain.name);
+                    Debug.Log(sheeps.name);
+
                     Herd.Instance.NewGroup(_sheepsMain);
                     Herd.Instance.AddGroup(_group.Index, sheeps);
                 }
                 else if (sheeps.Communication.GroupInstance != null && _sheepsMain.Communication.GroupInstance == null)
                 {
-                    Herd.Instance.AddGroup(sheeps.Communication.GroupInstance.Index, sheeps);
+                    Debug.Log("T" + 2);
+                    Debug.Log(_sheepsMain.name);
+                    Debug.Log(sheeps.name);
+
+                    Herd.Instance.AddGroup(sheeps.Communication.GroupInstance.Index, _sheepsMain);
                 }
                 else if (sheeps.Communication.GroupInstance == null && _sheepsMain.Communication.GroupInstance != null)
                 {
+                    Debug.Log("T" + 3);
+                    Debug.Log(_sheepsMain.name);
+                    Debug.Log(sheeps.name);
+
+
                     Herd.Instance.AddGroup(_group.Index, sheeps);
                 }
                 else if (sheeps.Communication.GroupInstance != null && _sheepsMain.Communication.GroupInstance != null
-                    && sheeps.Communication.GroupInstance!= _sheepsMain.Communication.GroupInstance)
+                    && sheeps.Communication.GroupInstance != _sheepsMain.Communication.GroupInstance)
                 {
+                    //Debug.Log(4);
+
                     Herd.Instance.UnificationOfGroups(sheeps.Communication.GroupInstance.Index, _sheepsMain.Communication.GroupInstance.Index);
                 }
+                #endregion
             }
         }
     }
@@ -59,8 +90,23 @@ public class CommunicationOfSheep : MonoBehaviour
     {
         if (other.tag == "Sheeps")
         {
-
+            Sheeps sheeps = other.GetComponentInParent<Sheeps>();
+            if (sheeps != null)
+            {
+                if (_sheepsList.Contains(sheeps))
+                {
+                    _sheepsList.Remove(sheeps);
+                    if(_group!=null)
+                    Herd.Instance.GroupCheck(_sheepsMain);
+                }
+            }
         }
+    }
+    private IEnumerator RebootCollider()
+    {
+        _collider.enabled = false;
+        yield return new WaitForSeconds(0.02f);
+        _collider.enabled = true;
     }
     public Transform GetNearestSheep()
     {
@@ -78,7 +124,7 @@ public class CommunicationOfSheep : MonoBehaviour
                 {
                     float magnitudeSheeps = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
 
-                    if (magnitude > magnitudeSheeps )
+                    if (magnitude > magnitudeSheeps)
                     {
                         magnitude = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
                         Sheep = _group.SheepsHerd[i].transform;
@@ -88,6 +134,10 @@ public class CommunicationOfSheep : MonoBehaviour
         }
 
         return Sheep;
+    }
+    public List<Sheeps> GetShepsNeighbors()
+    {
+        return _sheepsList;
     }
     public void GroupInitialization(Group group)
     {
@@ -116,5 +166,15 @@ public class CommunicationOfSheep : MonoBehaviour
                 _group.Leader = null;
             }
         }
+    }
+    public void LeavinGroup()
+    {
+        if (_group!=null)
+        {
+            Herd.Instance.RemoveGroup(_group.Index, _sheepsMain);
+            _group = null;
+        }
+        _sheepsMain.LeavinGroup();
+        StartCoroutine(RebootCollider());
     }
 }
