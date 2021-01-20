@@ -388,6 +388,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheep
       objectReference: {fileID: 0}
+    - target: {fileID: 7010141527839243326, guid: 00cf35c5d8315444cacbb611b11b2967,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00cf35c5d8315444cacbb611b11b2967, type: 3}
 --- !u!4 &3130770546819580796 stripped
