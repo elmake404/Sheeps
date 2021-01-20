@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anchorPoint: {fileID: 1725953321}
   _finishPos: {fileID: 856916036}
-  _offSet: {x: 0, y: 0, z: -3}
+  _offSet: {x: 0, y: 0, z: -5}
   _smoothTime: 0.3
 --- !u!1001 &974620544
 PrefabInstance:
