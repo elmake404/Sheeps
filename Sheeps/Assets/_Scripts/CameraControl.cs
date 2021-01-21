@@ -28,10 +28,10 @@ public class CameraControl : MonoBehaviour
     {
         transform.position = Vector3.SmoothDamp(transform.position, _target + _offSet, ref _velocity, _smoothTime);
     }
-    public void SetTarget(Group group)
+    public void SetTargetGroup(Group group)
     {
         float magnitude = float.PositiveInfinity;
-        float ZPos = transform.position.z;
+        float ZPos = (transform.position - _offSet).z;
 
         for (int i = 0; i < group.SheepsHerd.Count; i++)
         {
@@ -43,9 +43,16 @@ public class CameraControl : MonoBehaviour
                 {
                     magnitude = (_finishPos.position - group.SheepsHerd[i].transform.position).sqrMagnitude;
                     ZPos = group.SheepsHerd[i].transform.position.z;
+                    Debug.Log(group.SheepsHerd[i].name);
                 }
             }
         }
+        Debug.Log(ZPos);
+
         _target.z = ZPos;
+    }
+    public void SetTarget(Vector3 target)
+    {
+        _target.z = target.z;
     }
 }

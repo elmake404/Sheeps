@@ -51,34 +51,20 @@ public class CommunicationOfSheep : MonoBehaviour
                 #region AddGroup
                 if (sheeps.Communication.GroupInstance == null && _sheepsMain.Communication.GroupInstance == null)
                 {
-                    //Debug.Log("T"+1);
-                    //Debug.Log(_sheepsMain.name);
-                    //Debug.Log(sheeps.name);
-
                     Herd.Instance.NewGroup(_sheepsMain);
                     Herd.Instance.AddGroup(_group.Index, sheeps);
                 }
                 else if (sheeps.Communication.GroupInstance != null && _sheepsMain.Communication.GroupInstance == null)
                 {
-                    //Debug.Log("T" + 2);
-                    //Debug.Log(_sheepsMain.name);
-                    //Debug.Log(sheeps.name);
-
                     Herd.Instance.AddGroup(sheeps.Communication.GroupInstance.Index, _sheepsMain);
                 }
                 else if (sheeps.Communication.GroupInstance == null && _sheepsMain.Communication.GroupInstance != null)
                 {
-                    //Debug.Log("T" + 3);
-                    //Debug.Log(_sheepsMain.name);
-                    //Debug.Log(sheeps.name);
-
-
                     Herd.Instance.AddGroup(_group.Index, sheeps);
                 }
                 else if (sheeps.Communication.GroupInstance != null && _sheepsMain.Communication.GroupInstance != null
                     && sheeps.Communication.GroupInstance != _sheepsMain.Communication.GroupInstance)
                 {
-
                     Herd.Instance.UnificationOfGroups(sheeps.Communication.GroupInstance.Index, _sheepsMain.Communication.GroupInstance.Index);
                 }
                 #endregion
