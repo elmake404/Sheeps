@@ -68,7 +68,7 @@ MonoBehaviour:
   _direcrionSheep: {fileID: 0}
   _rbMain: {fileID: 4753689859932013966}
   _speedRuning: 0.02
-  _speedRotation: 0.3
+  _speedRotation: 0.1
   _minDistens: 0.5
   _brakingSpeed: 0.03
   _isShepherd: 0

@@ -43,12 +43,9 @@ public class CameraControl : MonoBehaviour
                 {
                     magnitude = (_finishPos.position - group.SheepsHerd[i].transform.position).sqrMagnitude;
                     ZPos = group.SheepsHerd[i].transform.position.z;
-                    Debug.Log(group.SheepsHerd[i].name);
                 }
             }
         }
-        Debug.Log(ZPos);
-
         _target.z = ZPos;
     }
     public void SetTarget(Vector3 target)

@@ -6,24 +6,32 @@ public class Sheeps : MonoBehaviour
 {
 
     [SerializeField]
-    private CommunicationOfSheep _communication; public CommunicationOfSheep Communication { get { return _communication; } }
+    private CommunicationOfSheep _communication; public CommunicationOfSheep Communication 
+    { get { return _communication; } }
 
     [SerializeField]
-    private Transform _direcrionSheep; public Transform DirecrionSheep { get { return _direcrionSheep; } }
+    private Transform _direcrionSheep; public Transform DirecrionSheep 
+    { get { return _direcrionSheep; } }
+
     [SerializeField]
     private Rigidbody _rbMain;
     private Vector3 _direction;
 
     [SerializeField]
     private float _speedRuning, _speedRotation, _minDistens, _brakingSpeed;
-    private float  _speedMove;
+    private float _speedMove;
     [SerializeField]
     private bool _isShepherd;
+
+    private bool _isDirectionSet 
+    { get { return _communication.GroupInstance!= null? _communication.GroupInstance.IsDirectionSet:false; } }
 
     //выглфдит не очень 
     [HideInInspector]
     public bool IsInHerd;
-    public float MinDistend { get { return _minDistens; } }
+    public float MinDistend 
+    { get { return _minDistens; } }
+
     void Start()
     {
     }
@@ -39,24 +47,24 @@ public class Sheeps : MonoBehaviour
 
         if (_isShepherd)
         {
+            #region Camera
             if (_communication.GroupInstance != null)
                 CameraControl.Instance.SetTargetGroup(_communication.GroupInstance);
             else
                 CameraControl.Instance.SetTarget(transform.position);
+            #endregion
 
             RotationOffTarget(_direction);
             _speedMove = _speedRuning;
-            //IsInHerd = false;
         }
         else if (_communication.GroupInstance != null)
         {
-            if (_communication.GroupInstance.IsDirectionSet && IsInHerd)
+            if (_isDirectionSet && IsInHerd)
             {
                 RotationForTarget(_communication.GroupInstance.DirectionGroup);
                 _speedMove = _speedRuning;
-                IsInHerd = false;
             }
-            else if (!IsInHerd)
+            else 
             {
                 if (_direcrionSheep == null)
                 {
@@ -67,28 +75,29 @@ public class Sheeps : MonoBehaviour
                     if ((_direcrionSheep.position - transform.position).sqrMagnitude > _minDistens)
                     {
                         RotationToTheTarget(_direcrionSheep.position);
-                        _speedMove = _speedRuning;
+                        transform.Translate(Vector3.forward * (_speedRuning- _speedMove));
 
                         _direcrionSheep = _communication.GetNearestSheep();
                     }
                     else
                     {
+                        _rbMain.velocity = Vector3.zero;
+                        _rbMain.angularVelocity = Vector3.zero;
+                        //_speedMove = 0/*Mathf.Lerp(_speedMove, 0, _brakingSpeed)*/;
                         IsInHerd = true;
                     }
                 }
             }
-            else
-            {
-                _rbMain.velocity = Vector3.zero;
-                _rbMain.angularVelocity = Vector3.zero;
-                _speedMove = Mathf.Lerp(_speedMove, 0, _brakingSpeed);
-            }
-
         }
         else
         {
             _rbMain.velocity = Vector3.zero;
             _rbMain.angularVelocity = Vector3.zero;
+            //_speedMove = 0/*Mathf.Lerp(_speedMove, 0, _brakingSpeed)*/;
+        }
+
+        if (!_isShepherd && !_isDirectionSet)
+        {
             _speedMove = Mathf.Lerp(_speedMove, 0, _brakingSpeed);
         }
 

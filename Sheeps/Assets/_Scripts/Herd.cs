@@ -48,10 +48,12 @@ public class Herd : MonoBehaviour
             Debug.Log(_groupsSheep.Count);
             for (int i = 0; i < _groupsSheep.Count; i++)
             {
-                for (int j = 0; j < _groupsSheep[i].SheepsHerd.Count; j++)
-                {
-                    Debug.Log(_groupsSheep[i].SheepsHerd[j].Communication.GroupInstance);
-                }
+                Debug.Log(_groupsSheep[i].Leader.name);
+
+                //for (int j = 0; j < _groupsSheep[i].SheepsHerd.Count; j++)
+                //{
+                //    Debug.Log(_groupsSheep[i].SheepsHerd[j].name);
+                //}
             }
         }
     }
@@ -109,7 +111,7 @@ public class Herd : MonoBehaviour
 
         while (true)
         {
-            if (i>= CheckList.Count)
+            if (i >= CheckList.Count)
             {
                 break;
             }
@@ -136,13 +138,22 @@ public class Herd : MonoBehaviour
             }
         }
 
-        if (CheckList.Count>=Fugitives.Count)
+        if (CheckList.Count >= Fugitives.Count)
         {
             for (int t = 0; t < Fugitives.Count; t++)
             {
                 Fugitives[t].Communication.LeavinGroup();
             }
-            CheckList[0].Communication.GroupInstance.Discharge();
+
+            if (CheckList.Count <= 1)
+            {
+                for (int t = 0; t < CheckList.Count; t++)
+                {
+                    CheckList[t].Communication.LeavinGroup();
+                }
+            }
+            else
+                CheckList[0].Communication.GroupInstance.Discharge();
         }
         else
         {
@@ -150,7 +161,16 @@ public class Herd : MonoBehaviour
             {
                 CheckList[t].Communication.LeavinGroup();
             }
-            Fugitives[0].Communication.GroupInstance.Discharge();
+
+            if (Fugitives.Count <= 1)
+            {
+                for (int t = 0; t < Fugitives.Count; t++)
+                {
+                    Fugitives[t].Communication.LeavinGroup();
+                }
+            }
+            else
+                Fugitives[0].Communication.GroupInstance.Discharge();
         }
     }
 }
