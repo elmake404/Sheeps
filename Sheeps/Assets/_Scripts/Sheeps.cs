@@ -83,7 +83,6 @@ public class Sheeps : MonoBehaviour
                     {
                         _rbMain.velocity = Vector3.zero;
                         _rbMain.angularVelocity = Vector3.zero;
-                        //_speedMove = 0/*Mathf.Lerp(_speedMove, 0, _brakingSpeed)*/;
                         IsInHerd = true;
                     }
                 }
@@ -93,7 +92,6 @@ public class Sheeps : MonoBehaviour
         {
             _rbMain.velocity = Vector3.zero;
             _rbMain.angularVelocity = Vector3.zero;
-            //_speedMove = 0/*Mathf.Lerp(_speedMove, 0, _brakingSpeed)*/;
         }
 
         if (!_isShepherd && !_isDirectionSet)
@@ -102,6 +100,14 @@ public class Sheeps : MonoBehaviour
         }
 
         transform.Translate(Vector3.forward * _speedMove);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Death")
+        {
+            _communication.LeavinGroup();
+            Destroy(gameObject);
+        }
     }
     private void OnTriggerStay(Collider other)
     {

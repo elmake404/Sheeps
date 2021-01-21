@@ -10,7 +10,7 @@ TagManager:
   - Forager
   - Food
   - Leader
-  - ShepherdForward
+  - Death
   layers:
   - Default
   - TransparentFX

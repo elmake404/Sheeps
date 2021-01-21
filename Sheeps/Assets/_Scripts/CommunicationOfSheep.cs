@@ -24,17 +24,6 @@ public class CommunicationOfSheep : MonoBehaviour
     }
     void FixedUpdate()
     {
-        //if (_group != null)
-        //{
-        //    if (_group.IsDirectionSet)
-        //    {
-        //        _sheepsMain.SetDirectionHers(_group.DirectionGroup);
-        //    }
-        //    else
-        //    {
-        //        _sheepsMain.TurningOffHerdMovement();
-        //    }
-        //}
     }
     private void OnTriggerEnter(Collider other)
     {
