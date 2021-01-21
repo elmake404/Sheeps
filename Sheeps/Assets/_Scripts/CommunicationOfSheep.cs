@@ -24,17 +24,17 @@ public class CommunicationOfSheep : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (_group != null)
-        {
-            if (_group.IsDirectionSet)
-            {
-                _sheepsMain.SetDirectionHers(_group.DirectionGroup);
-            }
-            else
-            {
-                _sheepsMain.TurningOffHerdMovement();
-            }
-        }
+        //if (_group != null)
+        //{
+        //    if (_group.IsDirectionSet)
+        //    {
+        //        _sheepsMain.SetDirectionHers(_group.DirectionGroup);
+        //    }
+        //    else
+        //    {
+        //        _sheepsMain.TurningOffHerdMovement();
+        //    }
+        //}
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -51,26 +51,26 @@ public class CommunicationOfSheep : MonoBehaviour
                 #region AddGroup
                 if (sheeps.Communication.GroupInstance == null && _sheepsMain.Communication.GroupInstance == null)
                 {
-                    Debug.Log("T"+1);
-                    Debug.Log(_sheepsMain.name);
-                    Debug.Log(sheeps.name);
+                    //Debug.Log("T"+1);
+                    //Debug.Log(_sheepsMain.name);
+                    //Debug.Log(sheeps.name);
 
                     Herd.Instance.NewGroup(_sheepsMain);
                     Herd.Instance.AddGroup(_group.Index, sheeps);
                 }
                 else if (sheeps.Communication.GroupInstance != null && _sheepsMain.Communication.GroupInstance == null)
                 {
-                    Debug.Log("T" + 2);
-                    Debug.Log(_sheepsMain.name);
-                    Debug.Log(sheeps.name);
+                    //Debug.Log("T" + 2);
+                    //Debug.Log(_sheepsMain.name);
+                    //Debug.Log(sheeps.name);
 
                     Herd.Instance.AddGroup(sheeps.Communication.GroupInstance.Index, _sheepsMain);
                 }
                 else if (sheeps.Communication.GroupInstance == null && _sheepsMain.Communication.GroupInstance != null)
                 {
-                    Debug.Log("T" + 3);
-                    Debug.Log(_sheepsMain.name);
-                    Debug.Log(sheeps.name);
+                    //Debug.Log("T" + 3);
+                    //Debug.Log(_sheepsMain.name);
+                    //Debug.Log(sheeps.name);
 
 
                     Herd.Instance.AddGroup(_group.Index, sheeps);
@@ -78,7 +78,6 @@ public class CommunicationOfSheep : MonoBehaviour
                 else if (sheeps.Communication.GroupInstance != null && _sheepsMain.Communication.GroupInstance != null
                     && sheeps.Communication.GroupInstance != _sheepsMain.Communication.GroupInstance)
                 {
-                    //Debug.Log(4);
 
                     Herd.Instance.UnificationOfGroups(sheeps.Communication.GroupInstance.Index, _sheepsMain.Communication.GroupInstance.Index);
                 }

@@ -18,6 +18,12 @@ public class Group
 
     public int Index;
     public bool IsDirectionSet;
+    public void Discharge()
+    {
+        DirectionGroup = Quaternion.identity;
+        IsDirectionSet = false;
+        Leader = null;
+    }
 
 }
 public class Herd : MonoBehaviour
@@ -44,7 +50,7 @@ public class Herd : MonoBehaviour
             {
                 for (int j = 0; j < _groupsSheep[i].SheepsHerd.Count; j++)
                 {
-                    Debug.Log(_groupsSheep[i].SheepsHerd[j].name);
+                    Debug.Log(_groupsSheep[i].SheepsHerd[j].Communication.GroupInstance);
                 }
             }
         }
@@ -136,6 +142,7 @@ public class Herd : MonoBehaviour
             {
                 Fugitives[t].Communication.LeavinGroup();
             }
+            CheckList[0].Communication.GroupInstance.Discharge();
         }
         else
         {
@@ -143,7 +150,7 @@ public class Herd : MonoBehaviour
             {
                 CheckList[t].Communication.LeavinGroup();
             }
+            Fugitives[0].Communication.GroupInstance.Discharge();
         }
-        //Debug.Log(Fugitives.Count);
     }
 }
