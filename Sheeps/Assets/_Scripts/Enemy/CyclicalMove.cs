@@ -20,8 +20,7 @@ public class CyclicalMove : MonoBehaviour
     private void FixedUpdate()
     {
         if(RotationObj())
-        transform.position = Vector3.MoveTowards(transform.position, NextPos(), _speed);
-        
+        transform.position = Vector3.MoveTowards(transform.position, NextPos(), _speed);        
     }
     private Vector3 NextPos()
     {
@@ -46,8 +45,8 @@ public class CyclicalMove : MonoBehaviour
     private bool RotationObj()
     {
         Quaternion Rotation = Quaternion.LookRotation(NextPos() - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Rotation, _speedRotation);
+        transform.rotation = Quaternion.Euler(Vector3.MoveTowards(transform.eulerAngles, Rotation.eulerAngles, _speedRotation));
 
-        return Rotation == transform.rotation;
+        return Rotation.eulerAngles == transform.eulerAngles;
     }
 }

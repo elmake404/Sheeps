@@ -30,6 +30,16 @@ public class CommunicationOfSheep : MonoBehaviour
         if (other.tag == "Sheeps")
         {
             Sheeps sheeps = other.GetComponentInParent<Sheeps>();
+
+            if (_sheepsMain.IsActivation)
+            {
+                sheeps.IsActivation = _sheepsMain.IsActivation;
+            }
+            else if (sheeps.IsActivation)
+            {
+                _sheepsMain.IsActivation = sheeps.IsActivation;
+            }
+
             if (_sheepsMain != sheeps && sheeps != null)
             {
                 if (!_sheepsList.Contains(sheeps))
