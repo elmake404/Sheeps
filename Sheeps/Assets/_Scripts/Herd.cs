@@ -173,4 +173,20 @@ public class Herd : MonoBehaviour
                 Fugitives[0].Communication.GroupInstance.Discharge();
         }
     }
+    public Sheeps FindingTheLeading(Group group)
+    {
+        List<Sheeps> sheeps = new List<Sheeps>();
+        sheeps.AddRange(group.SheepsHerd);
+        float magnitude = float.PositiveInfinity;
+        Sheeps sheep = null;
+        for (int i = 0; i < sheeps.Count; i++)
+        {
+            if (magnitude>sheeps[i].DistanceFinish)
+            {
+                magnitude = sheeps[i].DistanceFinish;
+                sheep = sheeps[i];
+            }
+        }
+        return sheep;
+    }
 }

@@ -106,11 +106,11 @@ public class CommunicationOfSheep : MonoBehaviour
             {
                 if (_group.SheepsHerd[i].IsInHerd && _sheepsMain.CheckForAnException(isDuet, _group.SheepsHerd[i]))
                 {
-                    float magnitudeSheeps = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
+                    float magnitudeSheeps = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude + _group.SheepsHerd[i].DistanceFinish;
 
                     if (magnitude > magnitudeSheeps)
                     {
-                        magnitude = (_sheepsMain.transform.position - _group.SheepsHerd[i].transform.position).sqrMagnitude;
+                        magnitude = magnitudeSheeps;
                         Sheep = _group.SheepsHerd[i].transform;
                     }
                 }

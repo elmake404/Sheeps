@@ -23,7 +23,6 @@ public class CameraControl : MonoBehaviour
         _target = transform.position -_offSet;
         _target.x = _anchorPoint.position.x;
     }
-
     private void FixedUpdate()
     {
         transform.position = Vector3.SmoothDamp(transform.position, _target + _offSet, ref _velocity, _smoothTime);
@@ -37,7 +36,7 @@ public class CameraControl : MonoBehaviour
         {
             if (group.SheepsHerd[i].IsInHerd)
             {
-                float magnitudeSheeps = (_finishPos.position - group.SheepsHerd[i].transform.position).sqrMagnitude;
+                float magnitudeSheeps = group.SheepsHerd[i].DistanceFinish;
 
                 if (magnitude > magnitudeSheeps)
                 {
@@ -51,5 +50,9 @@ public class CameraControl : MonoBehaviour
     public void SetTarget(Vector3 target)
     {
         _target.z = target.z;
+    }
+    public Vector3 GetPosFinish()
+    {
+        return _finishPos.position;
     }
 }

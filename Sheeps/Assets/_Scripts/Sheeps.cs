@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Sheeps : MonoBehaviour
 {
-
     [SerializeField]
     private CommunicationOfSheep _communication; public CommunicationOfSheep Communication
     { get { return _communication; } }
@@ -25,6 +24,8 @@ public class Sheeps : MonoBehaviour
     private bool _isDirectionSet
     { get { return _communication.GroupInstance != null ? _communication.GroupInstance.IsDirectionSet : false; } }
 
+    public float DistanceFinish
+    { get; private set; }
     //выглфдит не очень 
     [HideInInspector]
     public bool IsInHerd;
@@ -35,11 +36,14 @@ public class Sheeps : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void FixedUpdate()
     {
+        Polishing();
+        DistanceFinish = (transform.position - CameraControl.Instance.GetPosFinish()).sqrMagnitude;
+
         if (!Player.IsMove && _isShepherd)
         {
             _direction = transform.position;
@@ -76,7 +80,8 @@ public class Sheeps : MonoBehaviour
                 }
                 else
                 {
-                    if ((_direcrionSheep.position - transform.position).sqrMagnitude > _minDistens)
+                    float sqrMagnitude = (_direcrionSheep.position - transform.position).sqrMagnitude;
+                    if ((sqrMagnitude > _minDistens) && this != Herd.Instance.FindingTheLeading(_communication.GroupInstance))
                     {
                         RotationToTheTarget(_direcrionSheep.position);
                         transform.Translate(Vector3.forward * (_speedRuning - _speedMove));
@@ -102,7 +107,6 @@ public class Sheeps : MonoBehaviour
         {
             _speedMove = Mathf.Lerp(_speedMove, 0, _brakingSpeed);
         }
-
 
         transform.Translate(Vector3.forward * _speedMove);
     }
@@ -136,6 +140,10 @@ public class Sheeps : MonoBehaviour
         PosShepherd.y = transform.position.y;
         Vector3 direction = (transform.position - PosShepherd).normalized;
         transform.forward = Vector3.Slerp(transform.forward, direction, _speedRotation);
+    }
+    private void Polishing()
+    {
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
     }
     private void RotationForTarget(Quaternion rotation)
     {
