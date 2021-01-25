@@ -11,15 +11,20 @@ public class Sheeps : MonoBehaviour
     [SerializeField]
     private Transform _direcrionSheep; public Transform DirecrionSheep
     { get { return _direcrionSheep; } }
+    [SerializeField]
+    private SkinnedMeshRenderer[] _mesh;
+    [SerializeField]
+    private Material _activeMaterial, _decontaminationMaterial;
 
     [SerializeField]
     private Rigidbody _rbMain;
-    private Vector3 _direction;
+    private Vector3 _direction, _directionJamp;
 
     [SerializeField]
-    private float _speedRuning, _speedRotation, _minDistens, _brakingSpeed;
+    private float _speedRuning, _speedRotation, _minDistens, _brakingSpeed, _jumpForse;
     private float _speedMove;
-    private bool _isShepherd;
+    [SerializeField]
+    private bool _isShepherd, _isJump, _isFly;
 
     private bool _isDirectionSet
     { get { return _communication.GroupInstance != null ? _communication.GroupInstance.IsDirectionSet : false; } }
@@ -36,11 +41,26 @@ public class Sheeps : MonoBehaviour
 
     void Start()
     {
+        if (!IsActivation )
+        {
+            for (int i = 0; i < _mesh.Length; i++)
+            {
+                _mesh[i].material = _decontaminationMaterial;
+            }
+        }
 
     }
 
     void FixedUpdate()
     {
+        if (IsActivation && _mesh[0].material != _activeMaterial)
+        {
+            for (int i = 0; i < _mesh.Length; i++)
+            {
+                _mesh[i].material = _activeMaterial;
+            }
+        }
+
         Polishing();
         DistanceFinish = (transform.position - CameraControl.Instance.GetPosFinish()).sqrMagnitude;
 
@@ -50,65 +70,72 @@ public class Sheeps : MonoBehaviour
             _communication.TurningOffGroupMovement();
             _isShepherd = false;
         }
-
-        if (_isShepherd && IsActivation)
+        if (!_isJump)
         {
-            #region Camera
-            if (_communication.GroupInstance != null)
-                CameraControl.Instance.SetTargetGroup(_communication.GroupInstance);
-            else
-                CameraControl.Instance.SetTarget(transform.position);
-            #endregion
-
-            _communication.SetDirectionGroup(transform.rotation);
-
-            RotationOffTarget(_direction);
-            _speedMove = _speedRuning;
-        }
-        else if (_communication.GroupInstance != null)
-        {
-            if (_isDirectionSet && IsInHerd)
+            if (_isShepherd && IsActivation)
             {
-                RotationForTarget(_communication.GroupInstance.DirectionGroup);
+                #region Camera
+                if (_communication.GroupInstance != null)
+                    CameraControl.Instance.SetTargetGroup(_communication.GroupInstance);
+                else
+                    CameraControl.Instance.SetTarget(transform.position);
+                #endregion
+
+                _communication.SetDirectionGroup(transform.rotation);
+
+                RotationOffTarget(_direction);
                 _speedMove = _speedRuning;
             }
-            else
+            else if (_communication.GroupInstance != null)
             {
-                if (_direcrionSheep == null)
+                if (_isDirectionSet && IsInHerd)
                 {
-                    _direcrionSheep = _communication.GetNearestSheep();
+                    RotationForTarget(_communication.GroupInstance.DirectionGroup);
+                    _speedMove = _speedRuning;
                 }
                 else
                 {
-                    float sqrMagnitude = (_direcrionSheep.position - transform.position).sqrMagnitude;
-                    if ((sqrMagnitude > _minDistens) && this != Herd.Instance.FindingTheLeading(_communication.GroupInstance))
+                    if (_direcrionSheep == null)
                     {
-                        RotationToTheTarget(_direcrionSheep.position);
-                        transform.Translate(Vector3.forward * (_speedRuning - _speedMove));
-
                         _direcrionSheep = _communication.GetNearestSheep();
                     }
                     else
                     {
-                        _rbMain.velocity = Vector3.zero;
-                        _rbMain.angularVelocity = Vector3.zero;
-                        IsInHerd = true;
+                        float sqrMagnitude = (_direcrionSheep.position - transform.position).sqrMagnitude;
+                        if ((sqrMagnitude > _minDistens) && this != Herd.Instance.FindingTheLeading(_communication.GroupInstance))
+                        {
+                            RotationToTheTarget(_direcrionSheep.position);
+                            transform.Translate(Vector3.forward * (_speedRuning - _speedMove));
+
+                            _direcrionSheep = _communication.GetNearestSheep();
+                        }
+                        else
+                        {
+                            _rbMain.velocity = Vector3.zero;
+                            _rbMain.angularVelocity = Vector3.zero;
+                            IsInHerd = true;
+                        }
                     }
                 }
             }
+            else
+            {
+                _rbMain.velocity = Vector3.zero;
+                _rbMain.angularVelocity = Vector3.zero;
+            }
+            if (!_isShepherd && !_isDirectionSet)
+            {
+                _speedMove = Mathf.Lerp(_speedMove, 0, _brakingSpeed);
+            }
+
+            transform.Translate(Vector3.forward * _speedMove);
         }
         else
         {
-            _rbMain.velocity = Vector3.zero;
-            _rbMain.angularVelocity = Vector3.zero;
+            transform.forward = Vector3.MoveTowards(transform.forward, _directionJamp, 0.5f);
+            transform.Translate(Vector3.forward * _speedRuning);
         }
 
-        if (!_isShepherd && !_isDirectionSet)
-        {
-            _speedMove = Mathf.Lerp(_speedMove, 0, _brakingSpeed);
-        }
-
-        transform.Translate(Vector3.forward * _speedMove);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -135,6 +162,18 @@ public class Sheeps : MonoBehaviour
             _isShepherd = false;
         }
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.tag == "Earth")
+        {
+            if (_isJump && _isFly)
+            {
+                Debug.Log(1);
+                _isJump = false;
+            }
+        }
+    }
+
     private void RotationOffTarget(Vector3 PosShepherd)
     {
         PosShepherd.y = transform.position.y;
@@ -155,6 +194,12 @@ public class Sheeps : MonoBehaviour
 
         Quaternion Rotation = Quaternion.LookRotation(PosShepherd - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, Rotation, _speedRotation);
+    }
+    private IEnumerator Delay()
+    {
+        _isFly = false;
+        yield return new WaitForSeconds(0.1f);
+        _isFly = true;
     }
     public void MovingToAnotherGroup(Group NewGrpop)
     {
@@ -184,5 +229,15 @@ public class Sheeps : MonoBehaviour
         _direcrionSheep = null;
         _isShepherd = false;
         IsInHerd = false;
+    }
+    public void JumpSheeps(float jampForce, Vector3 rotation)
+    {
+        if (!_isJump)
+        {
+            _directionJamp = rotation;
+            _rbMain.AddForce(Vector3.up * jampForce);
+            _isJump = true;
+            StartCoroutine(Delay());
+        }
     }
 }
