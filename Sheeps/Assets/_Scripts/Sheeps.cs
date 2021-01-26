@@ -23,7 +23,7 @@ public class Sheeps : MonoBehaviour
     [SerializeField]
     private float _speedRuning, _speedRotation, _minDistens, _brakingSpeed, _jumpForse;
     private float _speedMove;
-    [SerializeField]
+    //[SerializeField]
     private bool _isShepherd, _isJump, _isFly;
 
     private bool _isDirectionSet
