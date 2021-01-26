@@ -23,8 +23,8 @@ public class Sheeps : MonoBehaviour
     [SerializeField]
     private float _speedRuning, _speedRotation, _minDistens, _brakingSpeed, _jumpForse;
     private float _speedMove;
-    //[SerializeField]
-    private bool _isShepherd, _isJump, _isFly;
+    [SerializeField]
+    private bool _isShepherd, _isJump, _isFly ;
 
     private bool _isDirectionSet
     { get { return _communication.GroupInstance != null ? _communication.GroupInstance.IsDirectionSet : false; } }
@@ -41,7 +41,8 @@ public class Sheeps : MonoBehaviour
 
     void Start()
     {
-        if (!IsActivation )
+        _isFly = true;
+        if (!IsActivation)
         {
             for (int i = 0; i < _mesh.Length; i++)
             {
@@ -58,6 +59,13 @@ public class Sheeps : MonoBehaviour
             for (int i = 0; i < _mesh.Length; i++)
             {
                 _mesh[i].material = _activeMaterial;
+            }
+        }
+        if (!IsActivation && _mesh[0].material != _decontaminationMaterial)
+        {
+            for (int i = 0; i < _mesh.Length; i++)
+            {
+                _mesh[i].material = _decontaminationMaterial;
             }
         }
 
@@ -168,12 +176,18 @@ public class Sheeps : MonoBehaviour
         {
             if (_isJump && _isFly)
             {
-                Debug.Log(1);
                 _isJump = false;
             }
         }
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.tag == "Earth")
+        {
+            _isJump = true;
+        }
 
+    }
     private void RotationOffTarget(Vector3 PosShepherd)
     {
         PosShepherd.y = transform.position.y;

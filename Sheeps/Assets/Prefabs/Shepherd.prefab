@@ -457,7 +457,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6940980266302776658}
   - component: {fileID: 1481004067907989117}
-  - component: {fileID: 7788859680194471023}
   m_Layer: 0
   m_Name: Shepherd
   m_TagString: Shepherd
@@ -474,7 +473,7 @@ Transform:
   m_GameObject: {fileID: 6940980266302776654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children:
   - {fileID: 7219170740330171413}
   - {fileID: 1766636337386585425}
@@ -495,19 +494,6 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.35, z: 0}
---- !u!114 &7788859680194471023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6940980266302776654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b888fde386012e40a240683aa57a9a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _joystickSensitivity: 0
 --- !u!1 &7291655800815806805
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Group
 {
-    public Group(int index, Sheeps sheep)
+    public Group(int index, Sheeps sheep,bool Active)
     {
+        IsAcnive = Active;
         Index = index;
         SheepsHerd = new List<Sheeps>();
         SheepsHerd.Add(sheep);
@@ -18,6 +19,7 @@ public class Group
 
     public int Index;
     public bool IsDirectionSet;
+    public bool IsAcnive { get; private set; }
     public void Discharge()
     {
         DirectionGroup = Quaternion.identity;
@@ -49,17 +51,12 @@ public class Herd : MonoBehaviour
             for (int i = 0; i < _groupsSheep.Count; i++)
             {
                 Debug.Log(_groupsSheep[i].Leader.name);
-
-                //for (int j = 0; j < _groupsSheep[i].SheepsHerd.Count; j++)
-                //{
-                //    Debug.Log(_groupsSheep[i].SheepsHerd[j].name);
-                //}
             }
         }
     }
     public void NewGroup(Sheeps _sheeps)
     {
-        var NewGroup = new Group(_groupsSheep.Count, _sheeps);
+        var NewGroup = new Group(_groupsSheep.Count, _sheeps,_sheeps.IsActivation);
         _groupsSheep.Add(NewGroup);
         _sheeps.Communication.GroupInitialization(NewGroup);
         _sheeps.IsInHerd = true;
@@ -68,6 +65,11 @@ public class Herd : MonoBehaviour
     {
         if (!_groupsSheep[index].SheepsHerd.Contains(sheeps))
         {
+            if (_groupsSheep[index].IsAcnive)
+            {
+                sheeps.IsActivation = _groupsSheep[index].IsAcnive;
+            }
+
             _groupsSheep[index].SheepsHerd.Add(sheeps);
             sheeps.Communication.GroupInitialization(_groupsSheep[index]);
         }
@@ -78,8 +80,14 @@ public class Herd : MonoBehaviour
 
         for (int i = 0; i < _groupsSheep[indexAddedGroup].SheepsHerd.Count; i++)
         {
+            if (_groupsSheep[indexWillAddedGroup].IsAcnive)
+            {
+                _groupsSheep[indexAddedGroup].SheepsHerd[i].IsActivation = _groupsSheep[indexWillAddedGroup].IsAcnive;
+            }
+
             _groupsSheep[indexAddedGroup].SheepsHerd[i].MovingToAnotherGroup(_groupsSheep[indexWillAddedGroup]);
         }
+
         _groupsSheep.RemoveAt(indexAddedGroup);
 
         for (int i = 0; i < _groupsSheep.Count; i++)
@@ -143,6 +151,7 @@ public class Herd : MonoBehaviour
             for (int t = 0; t < Fugitives.Count; t++)
             {
                 Fugitives[t].Communication.LeavinGroup();
+                Fugitives[t].IsActivation = false;
             }
 
             if (CheckList.Count <= 1)
@@ -160,6 +169,7 @@ public class Herd : MonoBehaviour
             for (int t = 0; t < CheckList.Count; t++)
             {
                 CheckList[t].Communication.LeavinGroup();
+                CheckList[t].IsActivation = false;
             }
 
             if (Fugitives.Count <= 1)
@@ -181,7 +191,7 @@ public class Herd : MonoBehaviour
         Sheeps sheep = null;
         for (int i = 0; i < sheeps.Count; i++)
         {
-            if (magnitude>sheeps[i].DistanceFinish)
+            if (magnitude > sheeps[i].DistanceFinish)
             {
                 magnitude = sheeps[i].DistanceFinish;
                 sheep = sheeps[i];

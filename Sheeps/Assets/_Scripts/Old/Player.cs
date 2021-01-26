@@ -27,53 +27,35 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (CanvasManager.IsStartGeme && CanvasManager.IsGameFlow)
         {
-            Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
-            _startPosMouse = (_cam.transform.position - ((ray.direction) *
-         ((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y)));
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
+                _startPosMouse = (_cam.transform.position - ((ray.direction) *
+             ((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y)));
 
-            _shepherd.position = _startPosMouse;
-            _shepherd.gameObject.SetActive(true);
+                _shepherd.position = _startPosMouse;
+                _shepherd.gameObject.SetActive(true);
 
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
 
-            _currentMosePos = (_cam.transform.position - ((ray.direction) *
-            ((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y)));
+                _currentMosePos = (_cam.transform.position - ((ray.direction) *
+                ((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y)));
 
                 IsMove = true;
                 _posShepherd = _currentMosePos;
+            }
+            else
+            {
+                _shepherd.gameObject.SetActive(false);
+
+                IsMove = false;
+            }
         }
-        else
-        {
-            _shepherd.gameObject.SetActive(false);
-
-            IsMove = false;
-        }
-
-        #region Old
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
-        //    _oldPosShepherd = _shepherd.position;
-        //    _startPosMouse = (_cam.transform.position - ((ray.direction) *
-        //((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y)));
-        //}
-        //else if (Input.GetMouseButton(0))
-        //{
-        //    vector = _shepherd.position;
-        //    Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
-        //    Vector3 NewPos = _oldPosShepherd + (_cam.transform.position - ((ray.direction) *
-        // ((_cam.transform.position.y - _shepherd.position.y) / ray.direction.y))) - _startPosMouse;
-
-        //    _shepherd.position = NewPos;
-        //    if((_shepherd.position - vector)!=Vector3.zero)
-        //    _shepherd.forward=(_shepherd.position - vector).normalized;
-        //}
-        #endregion
     }
     private void FixedUpdate()
     {

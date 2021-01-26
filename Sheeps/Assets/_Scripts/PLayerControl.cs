@@ -34,11 +34,6 @@ public class PLayerControl : MonoBehaviour
                 float xStart = ((_currentMosePos.x - _startMosePos.x) > 0 ? 1f / _joystickSensitivity : -(1f / _joystickSensitivity));
                 _startMosePos.x = _currentMosePos.x - xStart;
             }
-
-            if ((_currentMosePos - _startMosePos).magnitude > 0.01f)
-            {
-                Debug.Log((_currentMosePos - _startMosePos));
-            }
         }
     }
 }

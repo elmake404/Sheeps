@@ -31,15 +31,6 @@ public class CommunicationOfSheep : MonoBehaviour
         {
             Sheeps sheeps = other.GetComponentInParent<Sheeps>();
 
-            if (_sheepsMain.IsActivation)
-            {
-                sheeps.IsActivation = _sheepsMain.IsActivation;
-            }
-            else if (sheeps.IsActivation)
-            {
-                _sheepsMain.IsActivation = sheeps.IsActivation;
-            }
-
             if (_sheepsMain != sheeps && sheeps != null)
             {
                 if (!_sheepsList.Contains(sheeps))
@@ -64,7 +55,16 @@ public class CommunicationOfSheep : MonoBehaviour
                 else if (sheeps.Communication.GroupInstance != null && _sheepsMain.Communication.GroupInstance != null
                     && sheeps.Communication.GroupInstance != _sheepsMain.Communication.GroupInstance)
                 {
-                    Herd.Instance.UnificationOfGroups(sheeps.Communication.GroupInstance.Index, _sheepsMain.Communication.GroupInstance.Index);
+                    if (_sheepsMain.Communication.GroupInstance.IsAcnive)
+                    {
+                        Herd.Instance.UnificationOfGroups
+                            (sheeps.Communication.GroupInstance.Index, _sheepsMain.Communication.GroupInstance.Index);
+                    }
+                    else
+                    {
+                        Herd.Instance.UnificationOfGroups
+                            (_sheepsMain.Communication.GroupInstance.Index, sheeps.Communication.GroupInstance.Index);
+                    }
                 }
                 #endregion
             }
@@ -80,8 +80,8 @@ public class CommunicationOfSheep : MonoBehaviour
                 if (_sheepsList.Contains(sheeps))
                 {
                     _sheepsList.Remove(sheeps);
-                    if(_group!=null)
-                    Herd.Instance.GroupCheck(_sheepsMain);
+                    if (_group != null)
+                        Herd.Instance.GroupCheck(_sheepsMain);
                 }
             }
         }
@@ -153,7 +153,7 @@ public class CommunicationOfSheep : MonoBehaviour
     }
     public void LeavinGroup()
     {
-        if (_group!=null)
+        if (_group != null)
         {
             Herd.Instance.RemoveGroup(_group.Index, _sheepsMain);
             _group = null;
