@@ -76,11 +76,14 @@ MonoBehaviour:
   _decontaminationMaterial: {fileID: 2100000, guid: 9a54b541ea6b7c648826c61d2e0e95b8,
     type: 2}
   _rbMain: {fileID: 4753689859932013966}
-  _speedRuning: 0.05
+  _speedRuning: 0.03
   _speedRotation: 0.1
   _minDistens: 0.5
   _brakingSpeed: 0.03
   _jumpForse: 0
+  _isShepherd: 0
+  _isJump: 0
+  _isFly: 0
   IsInHerd: 0
   IsActivation: 0
 --- !u!1 &6521164675729301424
