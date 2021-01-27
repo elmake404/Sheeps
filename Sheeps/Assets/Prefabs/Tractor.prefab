@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targer: {fileID: 280463809997497126}
   _speed: 0.05
-  _speedRotation: 1
+  _speedRotation: 1.5
 --- !u!1001 &280463808849194867
 PrefabInstance:
   m_ObjectHideFlags: 0
