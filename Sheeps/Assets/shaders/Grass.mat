@@ -25,13 +25,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BendRotationRandom: 0.15
-    - _BladeCurve: 2
+    - _BladeCurve: 4
     - _BladeForward: 0.25
     - _BladeHeight: 0.75
     - _BladeHeightRandom: 3
-    - _BladeWidth: 0.075
+    - _BladeWidth: 0.1
     - _BladeWidthRandom: 0.02
-    - _TessellationUniform: 7.3
+    - _TessellationUniform: 8
     - _TranslucentGain: 0
     - _WindStrength: 1
     m_Colors:
