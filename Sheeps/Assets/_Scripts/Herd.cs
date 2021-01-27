@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Group
 {
-    public Group(int index, Sheeps sheep,bool Active)
+    public Group(int index, Sheeps sheep, bool Active)
     {
         IsAcnive = Active;
         Index = index;
@@ -50,13 +50,14 @@ public class Herd : MonoBehaviour
             Debug.Log(_groupsSheep.Count);
             for (int i = 0; i < _groupsSheep.Count; i++)
             {
-                Debug.Log(_groupsSheep[i].Leader.name);
+                if (_groupsSheep[i].IsAcnive)
+                    Debug.Log(_groupsSheep[i].SheepsHerd[0].enabled);
             }
         }
     }
     public void NewGroup(Sheeps _sheeps)
     {
-        var NewGroup = new Group(_groupsSheep.Count, _sheeps,_sheeps.IsActivation);
+        var NewGroup = new Group(_groupsSheep.Count, _sheeps, _sheeps.IsActivation);
         _groupsSheep.Add(NewGroup);
         _sheeps.Communication.GroupInitialization(NewGroup);
         _sheeps.IsInHerd = true;
@@ -198,5 +199,35 @@ public class Herd : MonoBehaviour
             }
         }
         return sheep;
+    }
+    public bool WinCheck()
+    {
+        bool win = true;
+        for (int i = 0; i < _groupsSheep.Count; i++)
+        {
+            if (_groupsSheep[i].IsAcnive)
+            {
+                for (int j = 0; j < _groupsSheep[i].SheepsHerd.Count; j++)
+                {
+                    if (_groupsSheep[i].SheepsHerd[j].enabled)
+                    {
+                        win = false;
+                    }
+                }
+            }
+        }
+        return win;
+    }
+    public bool LoseCheck()
+    {
+        bool lose = true;
+        for (int i = 0; i < _groupsSheep.Count; i++)
+        {
+            if (_groupsSheep[i].IsAcnive)
+            {
+                lose = false;
+            }
+        }
+        return lose;
     }
 }

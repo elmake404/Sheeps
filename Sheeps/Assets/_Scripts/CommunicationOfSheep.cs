@@ -171,5 +171,6 @@ public class CommunicationOfSheep : MonoBehaviour
         }
         _sheepsMain.LeavinGroup();
         StartCoroutine(RebootCollider());
+        CanvasManager.IsWinGame = Herd.Instance.WinCheck();
     }
 }

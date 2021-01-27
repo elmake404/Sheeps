@@ -139,6 +139,7 @@ public class Sheeps : MonoBehaviour
         {
             _communication.LeavinGroup();
             Destroy(gameObject);
+            CanvasManager.IsLoseGame = Herd.Instance.LoseCheck();
         }
         if (other.tag == "Finish")
         {

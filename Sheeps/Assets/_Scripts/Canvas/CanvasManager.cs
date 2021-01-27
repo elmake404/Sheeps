@@ -33,11 +33,13 @@ public class CanvasManager : MonoBehaviour
         }
         if (!_wimIU.activeSelf&& IsWinGame)
         {
+            IsGameFlow = false;
             _inGameUI.SetActive(false);
             _wimIU.SetActive(true);
         }
-        if (_lostUI.activeSelf && IsWinGame)
+        if (!_lostUI.activeSelf && IsLoseGame)
         {
+            IsGameFlow = false;
             _inGameUI.SetActive(false);
             _lostUI.SetActive(true);
         }
