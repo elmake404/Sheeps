@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2446183900587899831}
   - component: {fileID: 4753689859932013966}
   - component: {fileID: 1256506681877364665}
+  - component: {fileID: 4192829494349765529}
   m_Layer: 8
   m_Name: Chicken
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _communication: {fileID: 6176353996296609418}
-  _direcrionSheep: {fileID: 0}
+  _direcrionSheep: {fileID: 2446183900587899831}
   _mesh:
   - {fileID: 446398503712784476}
   - {fileID: 284695671132963751}
@@ -75,17 +76,27 @@ MonoBehaviour:
   _activeMaterial: {fileID: 2100000, guid: 0914a3fd59ce1dc439c5b010266bf9ae, type: 2}
   _decontaminationMaterial: {fileID: 2100000, guid: 9a54b541ea6b7c648826c61d2e0e95b8,
     type: 2}
+  _sheepPen: {fileID: 0}
   _rbMain: {fileID: 4753689859932013966}
   _speedRuning: 0.03
   _speedRotation: 0.1
   _minDistens: 0.5
   _brakingSpeed: 0.03
   _jumpForse: 0
-  _isShepherd: 0
-  _isJump: 0
-  _isFly: 0
   IsInHerd: 0
   IsActivation: 0
+--- !u!114 &4192829494349765529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379053108535662382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376e786ec7666e648bd3af161a08515d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6521164675729301424
 GameObject:
   m_ObjectHideFlags: 0
