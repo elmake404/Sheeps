@@ -15,6 +15,8 @@ public class Sheeps : MonoBehaviour
     private SkinnedMeshRenderer[] _mesh;
     [SerializeField]
     private Material _activeMaterial, _decontaminationMaterial;
+    [SerializeField]
+    private SheepPen _sheepPen;
 
     [SerializeField]
     private Rigidbody _rbMain;
@@ -23,7 +25,6 @@ public class Sheeps : MonoBehaviour
     [SerializeField]
     private float _speedRuning, _speedRotation, _minDistens, _brakingSpeed, _jumpForse;
     private float _speedMove;
-    [SerializeField]
     private bool _isShepherd, _isJump, _isFly ;
 
     private bool _isDirectionSet
@@ -38,7 +39,11 @@ public class Sheeps : MonoBehaviour
 
     public float MinDistend
     { get { return _minDistens; } }
-
+    private void Awake()
+    {
+        _sheepPen.Initialization(_rbMain,_speedRuning);
+        _sheepPen.enabled = false;
+    }
     void Start()
     {
         _isFly = true;
@@ -54,21 +59,7 @@ public class Sheeps : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (IsActivation && _mesh[0].material != _activeMaterial)
-        {
-            for (int i = 0; i < _mesh.Length; i++)
-            {
-                _mesh[i].material = _activeMaterial;
-            }
-        }
-        if (!IsActivation && _mesh[0].material != _decontaminationMaterial)
-        {
-            for (int i = 0; i < _mesh.Length; i++)
-            {
-                _mesh[i].material = _decontaminationMaterial;
-            }
-        }
-
+        ActiveSheep();
         Polishing();
         DistanceFinish = (transform.position - CameraControl.Instance.GetPosFinish()).sqrMagnitude;
 
@@ -78,6 +69,7 @@ public class Sheeps : MonoBehaviour
             _communication.TurningOffGroupMovement();
             _isShepherd = false;
         }
+
         if (!_isJump)
         {
             if (_isShepherd && IsActivation)
@@ -110,6 +102,7 @@ public class Sheeps : MonoBehaviour
                     else
                     {
                         float sqrMagnitude = (_direcrionSheep.position - transform.position).sqrMagnitude;
+
                         if ((sqrMagnitude > _minDistens) && this != Herd.Instance.FindingTheLeading(_communication.GroupInstance))
                         {
                             RotationToTheTarget(_direcrionSheep.position);
@@ -131,12 +124,7 @@ public class Sheeps : MonoBehaviour
                 _rbMain.velocity = Vector3.zero;
                 _rbMain.angularVelocity = Vector3.zero;
             }
-            if (!_isShepherd && !_isDirectionSet)
-            {
-                _speedMove = Mathf.Lerp(_speedMove, 0, _brakingSpeed);
-            }
-
-            transform.Translate(Vector3.forward * _speedMove);
+            Movement();
         }
         else
         {
@@ -151,6 +139,10 @@ public class Sheeps : MonoBehaviour
         {
             _communication.LeavinGroup();
             Destroy(gameObject);
+        }
+        if (other.tag == "Finish")
+        {
+            SheepInThePen();
         }
     }
     private void OnTriggerStay(Collider other)
@@ -176,6 +168,7 @@ public class Sheeps : MonoBehaviour
         {
             if (_isJump && _isFly)
             {
+                _directionJamp = transform.forward;
                 _isJump = false;
             }
         }
@@ -187,6 +180,43 @@ public class Sheeps : MonoBehaviour
             _isJump = true;
         }
 
+    }
+    private void SheepInThePen()
+    {
+        for (int i = 0; i < _mesh.Length; i++)
+        {
+            _mesh[i].material = _activeMaterial;
+        }
+        _communication.LeavinGroupFinish();
+        _sheepPen.enabled = true;
+        enabled = false;
+    }
+    private void Movement()
+    {
+        if (!_isShepherd && !_isDirectionSet)
+        {
+            _speedMove = Mathf.Lerp(_speedMove, 0, _brakingSpeed);
+        }
+
+        transform.Translate(Vector3.forward * _speedMove);
+
+    }
+    private void ActiveSheep()
+    {
+        if (IsActivation && _mesh[0].material != _activeMaterial)
+        {
+            for (int i = 0; i < _mesh.Length; i++)
+            {
+                _mesh[i].material = _activeMaterial;
+            }
+        }
+        if (!IsActivation && _mesh[0].material != _decontaminationMaterial)
+        {
+            for (int i = 0; i < _mesh.Length; i++)
+            {
+                _mesh[i].material = _decontaminationMaterial;
+            }
+        }
     }
     private void RotationOffTarget(Vector3 PosShepherd)
     {

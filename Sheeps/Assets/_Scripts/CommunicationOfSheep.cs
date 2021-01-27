@@ -161,4 +161,15 @@ public class CommunicationOfSheep : MonoBehaviour
         _sheepsMain.LeavinGroup();
         StartCoroutine(RebootCollider());
     }
+    public void LeavinGroupFinish()
+    {
+        if (_group != null)
+        {
+            Herd.Instance.RemoveGroup(_group.Index, _sheepsMain);
+            _group.Renewal();
+            _group = null;
+        }
+        _sheepsMain.LeavinGroup();
+        StartCoroutine(RebootCollider());
+    }
 }

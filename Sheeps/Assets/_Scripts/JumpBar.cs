@@ -15,8 +15,8 @@ public class JumpBar : MonoBehaviour
     {
         if (other.tag == "Sheeps")
         {
-            Debug.Log(-transform.eulerAngles);
-            Debug.Log(transform.eulerAngles);
+            //Debug.Log(-transform.eulerAngles);
+            //Debug.Log(transform.eulerAngles);
             if (transform.InverseTransformDirection(other.transform.parent.forward).z > 0)
             {
                 if(transform.InverseTransformPoint(other.transform.position).z<0)
