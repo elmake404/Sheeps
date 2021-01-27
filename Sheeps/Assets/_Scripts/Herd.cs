@@ -20,7 +20,7 @@ public class Group
     public int Index;
     public bool IsDirectionSet;
     public bool IsAcnive { get; private set; }
-    public void Discharge()
+    public void Renewal()
     {
         DirectionGroup = Quaternion.identity;
         IsDirectionSet = false;
@@ -162,7 +162,7 @@ public class Herd : MonoBehaviour
                 }
             }
             else
-                CheckList[0].Communication.GroupInstance.Discharge();
+                CheckList[0].Communication.GroupInstance.Renewal();
         }
         else
         {
@@ -180,7 +180,7 @@ public class Herd : MonoBehaviour
                 }
             }
             else
-                Fugitives[0].Communication.GroupInstance.Discharge();
+                Fugitives[0].Communication.GroupInstance.Renewal();
         }
     }
     public Sheeps FindingTheLeading(Group group)
