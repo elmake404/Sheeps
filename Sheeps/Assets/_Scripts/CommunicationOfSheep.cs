@@ -70,22 +70,22 @@ public class CommunicationOfSheep : MonoBehaviour
             }
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Sheeps")
-        {
-            Sheeps sheeps = other.GetComponentInParent<Sheeps>();
-            if (sheeps != null)
-            {
-                if (_sheepsList.Contains(sheeps))
-                {
-                    _sheepsList.Remove(sheeps);
-                    if (_group != null)
-                        Herd.Instance.GroupCheck(_sheepsMain);
-                }
-            }
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "Sheeps")
+    //    {
+    //        Sheeps sheeps = other.GetComponentInParent<Sheeps>();
+    //        if (sheeps != null)
+    //        {
+    //            if (_sheepsList.Contains(sheeps))
+    //            {
+    //                _sheepsList.Remove(sheeps);
+    //                if (_group != null)
+    //                    Herd.Instance.GroupCheck(_sheepsMain);
+    //            }
+    //        }
+    //    }
+    //}
     private IEnumerator RebootCollider()
     {
         _collider.enabled = false;
