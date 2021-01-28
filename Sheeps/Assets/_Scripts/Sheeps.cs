@@ -139,6 +139,7 @@ public class Sheeps : MonoBehaviour
     {
         if (other.tag == "Death")
         {
+            Debug.Log(other.name);
             _communication.LeavinGroup();
             if (other.gameObject.layer==10)
             {
