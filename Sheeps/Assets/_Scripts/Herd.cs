@@ -19,7 +19,8 @@ public class Group
 
     public int Index;
     public bool IsDirectionSet;
-    public bool IsAcnive { get; private set; }
+    public bool IsAcnive 
+    { get; private set; }
     public void Renewal()
     {
         DirectionGroup = Quaternion.identity;
@@ -64,6 +65,11 @@ public class Herd : MonoBehaviour
     }
     public void AddGroup(int index, Sheeps sheeps)
     {
+        if (!_groupsSheep[index].IsAcnive)
+        {
+
+        }
+
         if (!_groupsSheep[index].SheepsHerd.Contains(sheeps))
         {
             if (_groupsSheep[index].IsAcnive)
@@ -152,7 +158,7 @@ public class Herd : MonoBehaviour
             for (int t = 0; t < Fugitives.Count; t++)
             {
                 Fugitives[t].Communication.LeavinGroup();
-                Fugitives[t].IsActivation = false;
+                //Fugitives[t].IsActivation = false;
             }
 
             if (CheckList.Count <= 1)
@@ -170,7 +176,7 @@ public class Herd : MonoBehaviour
             for (int t = 0; t < CheckList.Count; t++)
             {
                 CheckList[t].Communication.LeavinGroup();
-                CheckList[t].IsActivation = false;
+                //CheckList[t].IsActivation = false;
             }
 
             if (Fugitives.Count <= 1)

@@ -22,6 +22,11 @@ public class CanvasManager : MonoBehaviour
             _menuUI.SetActive(true);
             IsGameFlow = true;
         }
+        else
+        {
+            _inGameUI.SetActive(true);
+            IsGameFlow = true;
+        }
     }
 
     private void Update()
