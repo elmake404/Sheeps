@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3419380671730723436}
   - component: {fileID: 8765442021203848004}
-  - component: {fileID: 1658197066}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -67,20 +66,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4131201734511398952}
   m_Enabled: 1
---- !u!136 &1658197066
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3419380671730723437}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 3
-  m_Direction: 2
-  m_Center: {x: 0, y: 1.25, z: 0.18}
 --- !u!1001 &974057815229623545
 PrefabInstance:
   m_ObjectHideFlags: 0

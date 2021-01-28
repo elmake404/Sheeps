@@ -8,9 +8,11 @@ public class Sheeps : MonoBehaviour
     private CommunicationOfSheep _communication; public CommunicationOfSheep Communication
     { get { return _communication; } }
 
-    [SerializeField]
+    //[SerializeField]
     private Transform _direcrionSheep; public Transform DirecrionSheep
     { get { return _direcrionSheep; } }
+    [SerializeField]
+    private Transform _sheepMod;
     [SerializeField]
     private SkinnedMeshRenderer[] _mesh;
     [SerializeField]
@@ -138,6 +140,14 @@ public class Sheeps : MonoBehaviour
         if (other.tag == "Death")
         {
             _communication.LeavinGroup();
+            if (other.gameObject.layer==10)
+            {
+                Vector3 Scale = _sheepMod.localScale;
+                Scale.y = 0;
+                _sheepMod.localScale = Scale;
+                _sheepMod.SetParent(null);
+            }
+
             Destroy(gameObject);
             CanvasManager.IsLoseGame = Herd.Instance.LoseCheck();
         }

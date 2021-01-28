@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _menuUI, _inGameUI, _wimIU, _lostUI;
+    [SerializeField]
+    private Text _levelText;
     private void Awake()
     {
         IsWinGame = false;
@@ -17,6 +20,11 @@ public class CanvasManager : MonoBehaviour
     }
     private void Start()
     {
+        if (PlayerPrefs.GetInt("Level")<=0)
+        {
+            PlayerPrefs.SetInt("Level", 1);
+        }
+        _levelText.text = "Level " + PlayerPrefs.GetInt("Level");
         if (!IsStartGeme)
         {
             _menuUI.SetActive(true);
@@ -41,6 +49,9 @@ public class CanvasManager : MonoBehaviour
             IsGameFlow = false;
             _inGameUI.SetActive(false);
             _wimIU.SetActive(true);
+            PlayerPrefs.SetInt("Scenes", PlayerPrefs.GetInt("Scenes")+1);
+            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+
         }
         if (!_lostUI.activeSelf && IsLoseGame)
         {

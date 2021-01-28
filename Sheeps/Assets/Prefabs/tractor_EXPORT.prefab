@@ -997,7 +997,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5652871000205844516}
   - component: {fileID: 6555674984975202746}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: tractor_EXPORT
   m_TagString: Death
   m_Icon: {fileID: 0}

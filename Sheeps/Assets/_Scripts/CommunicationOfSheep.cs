@@ -156,6 +156,7 @@ public class CommunicationOfSheep : MonoBehaviour
         if (_group != null)
         {
             Herd.Instance.RemoveGroup(_group.Index, _sheepsMain);
+            _group.Renewal();
             _group = null;
         }
         _sheepsMain.LeavinGroup();

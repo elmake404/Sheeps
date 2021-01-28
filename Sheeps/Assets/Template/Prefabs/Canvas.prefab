@@ -901,6 +901,7 @@ MonoBehaviour:
   _inGameUI: {fileID: 1777170646809218}
   _wimIU: {fileID: 1326874676435430}
   _lostUI: {fileID: 1401342752598832}
+  _levelText: {fileID: 114571137488477882}
 --- !u!1 &1168849908791638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,7 +1803,7 @@ GameObject:
   - component: {fileID: 224122912994055248}
   - component: {fileID: 222073396449890134}
   - component: {fileID: 114079143025664714}
-  - component: {fileID: 4055597220490880831}
+  - component: {fileID: 1105564115298089703}
   m_Layer: 5
   m_Name: WinUI
   m_TagString: Untagged
@@ -1869,7 +1870,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4055597220490880831
+--- !u!114 &1105564115298089703
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1878,7 +1879,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1326874676435430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e78418c972d2fe4f848ef5bfd47170e, type: 3}
+  m_Script: {fileID: 11500000, guid: dfa3db5b1207fad48a12a09343e20b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1334389028630384
