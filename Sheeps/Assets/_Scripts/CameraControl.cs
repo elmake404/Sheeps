@@ -47,7 +47,6 @@ public class CameraControl : MonoBehaviour
                 }
             }
         }
-        Debug.Log(XPos - _anchorPoint.position.x);
         if (Mathf.Abs(XPos - _anchorPoint.position.x) > _offSetX)
         {
             float factor = XPos - _anchorPoint.position.x > 0 ? 1 : -1;
