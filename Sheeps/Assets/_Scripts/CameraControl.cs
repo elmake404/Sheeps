@@ -13,7 +13,7 @@ public class CameraControl : MonoBehaviour
     private Vector3 _offSet = new Vector3(0, 0, 10);
 
     [SerializeField]
-    private float _smoothTime = 0.3F;
+    private float _smoothTime = 0.3F, _offSetX = 1f;
     private void Awake()
     {
         Instance = this;
@@ -31,6 +31,7 @@ public class CameraControl : MonoBehaviour
     {
         float magnitude = float.PositiveInfinity;
         float ZPos = (transform.position - _offSet).z;
+        float XPos = (transform.position - _offSet).x;
 
         for (int i = 0; i < group.SheepsHerd.Count; i++)
         {
@@ -42,14 +43,30 @@ public class CameraControl : MonoBehaviour
                 {
                     magnitude = (_finishPos.position - group.SheepsHerd[i].transform.position).sqrMagnitude;
                     ZPos = group.SheepsHerd[i].transform.position.z;
+                    XPos = group.SheepsHerd[i].transform.position.x;
                 }
             }
         }
+        Debug.Log(XPos - _anchorPoint.position.x);
+        if (Mathf.Abs(XPos - _anchorPoint.position.x) > _offSetX)
+        {
+            float factor = XPos - _anchorPoint.position.x > 0 ? 1 : -1;
+            XPos = _anchorPoint.position.x +(_offSetX * factor);
+        }
         _target.z = ZPos;
+        _target.x = XPos;
     }
     public void SetTarget(Vector3 target)
     {
-        _target.z = target.z;
+        float XPos = target.x;
+
+        if (Mathf.Abs(XPos - _anchorPoint.position.x) > _offSetX)
+        {
+            float factor = XPos - _anchorPoint.position.x > 0 ? 1 : -1;
+            XPos = _anchorPoint.position.x + (_offSetX * factor);
+        }
+        _target.z = target.x;
+        _target.x = XPos;
     }
     public Vector3 GetPosFinish()
     {
