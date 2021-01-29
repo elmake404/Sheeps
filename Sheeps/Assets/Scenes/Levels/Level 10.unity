@@ -1683,7 +1683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003790592b1787a4080ad056a2145318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shepherd: {fileID: 0}
+  _shepherd: {fileID: 1744312290}
   _speedMowe: 0.03
   _speedRot: 0.7
   _speedRotMin: 0.01
@@ -1750,8 +1750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8546120d67be214a8c2a9fcd6dcdbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anchorPoint: {fileID: 0}
-  _finishPos: {fileID: 0}
+  _anchorPoint: {fileID: 57527805}
+  _finishPos: {fileID: 794000554}
   _offSet: {x: 0, y: 0, z: -3}
   _smoothTime: 0.3
 --- !u!4 &1028048089
@@ -3124,6 +3124,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb67bf0c9ac0b4e45af4db0815862a99, type: 3}
+--- !u!4 &1744312290 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6940980266302776658, guid: fb67bf0c9ac0b4e45af4db0815862a99,
+    type: 3}
+  m_PrefabInstance: {fileID: 1744312289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1786310657 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2446183900587899831, guid: a9d9df5d7f570da43b1d35e46595b9ed,
