@@ -66,7 +66,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _communication: {fileID: 6176353996296609418}
-  _direcrionSheep: {fileID: 0}
   _sheepMod: {fileID: 3130770546819580796}
   _mesh:
   - {fileID: 446398503712784476}
@@ -242,6 +241,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2446183900587899831}
     m_Modifications:
+    - target: {fileID: 78979935991592478, guid: bf27e48b2ea05cf42abb55a743e769ff,
+        type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 696047965017646829, guid: bf27e48b2ea05cf42abb55a743e769ff,
         type: 3}
       propertyPath: m_Name
